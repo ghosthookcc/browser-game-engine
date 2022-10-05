@@ -10,7 +10,7 @@ export class Perspective
 	_proj_mat = mat4.create();
 	_mod_view_mat = mat4.create();
 
-	_start_pos = math.newVec3(0.0, 0.0, -5.0);
+	_start_pos = math.Vec3(0.0, 0.0, -5.0);
 
 	constructor(fov=this._fov, 
 				aspect=this._aspect, 

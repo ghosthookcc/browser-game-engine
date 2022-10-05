@@ -1,4 +1,4 @@
-export class vec3 
+export class Vec3 
 {
 	x = undefined;
 	y = undefined;
