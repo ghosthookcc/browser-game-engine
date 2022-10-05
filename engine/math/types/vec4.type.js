@@ -1,12 +1,14 @@
-export class Vec3 
+export class Vec4 
 {
 	x = undefined;
 	y = undefined;
 	z = undefined;
-	constructor(x, y, z)
+	w = undefined;
+	constructor(x, y, z, w)
 	{
 		this.x = parseFloat(x) ?? null;
 		this.y = parseFloat(y) ?? null;
 		this.z = parseFloat(z) ?? null; 
+		this.w = parseFloat(w) ?? null;
 	}
 };
