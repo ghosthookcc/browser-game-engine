@@ -1,14 +1,15 @@
-export class Quaternion
+import { QUATERNION } from "./base/quaternion.base.type.js";
+
+export class Quaternion extends QUATERNION
 {
-	x = undefined;
-	y = undefined;
-	z = undefined;
-	w = undefined;
-	constructor(x, y, z, w = 1.0)
+	constructor(x, y, z, w)
 	{
+
+		super();
 		this.x = parseFloat(x) ?? null;
 		this.y = parseFloat(y) ?? null;
-		this.z = parseFloat(z) ?? null;
+		this.z = parseFloat(z) ?? null; 
 		this.w = parseFloat(w) ?? null;
+		return this;
 	}
 }

@@ -1,10 +1,13 @@
-export class Vec2
+import { VEC } from "./base/vec.base.type.js";
+
+export class Vec2 extends VEC
 {
-	x = undefined;
-	y = undefined;
 	constructor(x, y)
 	{
+
+		super();
 		this.x = parseFloat(x) ?? null;
-		this.y = parseFloat(y) ?? null; 
+		this.y = parseFloat(y) ?? null;
+		return this;
 	}
-};
+}

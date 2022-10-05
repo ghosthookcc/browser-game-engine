@@ -1,10 +1,16 @@
+import { MATRIX } from "./types/base/matrix.base.type.js";
+
 import { Mat4x4 } from "./types/mat4x4.type.js";
 import { Mat3x3 } from "./types/mat3x3.type.js";
 import { Mat2x2 } from "./types/mat2x2.type.js";
 
+import { VEC } from "./types/base/vec.base.type.js";
+
 import { Vec4 } from "./types/vec4.type.js";
 import { Vec3 } from "./types/vec3.type.js";
 import { Vec2 } from "./types/vec2.type.js";
+
+import { QUATERNION } from "./types/base/quaternion.base.type.js";
 
 import { Quaternion } from "./types/quaternion.type.js";
 
@@ -12,24 +18,24 @@ export class Math
 {
 	constructor()
 	{
-		this._mat4x4 = new Mat4x4();
-		this._mat3x3 = new Mat3x3();
-		this._mat2x2 = new Mat2x2();
+		this.MATRIX     = new MATRIX();
+		this.VEC        = new VEC(); 
+		this.QUATERNION = new QUATERNION();
 	}
 
 	Mat4x4(identity)
 	{
-		return this._mat4x4.create(identity);
+		return new Mat4x4(identity);
 	}
 
 	Mat3x3(identity)
 	{
-		return this._mat3x3.create(identity);
+		return new Mat3x3(identity);
 	}
 
 	Mat2x2(identity)
 	{
-		return this._mat2x2.create(identity);
+		return new Mat2x2(identity);
 	}
 
 	Vec4(x, y, z, w)
