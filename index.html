@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en-US">
+	<meta charset="utf-8">
+
+	<title>Index</title>
+
+	<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="container">
+		<canvas id="entrypoint"></canvas>
+		<div id="overlay">
+			<div>FPS: <span id="FPS">0</span></div>
+    		<div>FRAME_TIME: <span id="FRAME_TIME">0</span></div>
+  		</div>
+	</div>
+
+	<script defer type="importmap">
+	{
+		"imports": 
+		{
+			"gl-matrix-math": "./engine/dependencies/gl-matrix/2.8.1/gl-matrix-min.js",
+			"ghcc": "./engine/base.ghcc.engine.js"
+		}
+	}
+	</script>
+	<script defer type="module" src="./main.js"></script>
+</body>
+</html>
