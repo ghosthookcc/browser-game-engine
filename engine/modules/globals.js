@@ -1,4 +1,4 @@
-import { ghccMath } from "./math.js"; 
+import { ghccMath } from "../math/math.js"; 
 
 export const entry = document.querySelector("#entrypoint");
 export const gl = entry.getContext("webgl2");

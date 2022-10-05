@@ -1,4 +1,4 @@
-import { vec3 } from "./math_types/vec3.type.js";
+import { vec3 } from "./types/vec3.type.js";
 
 export class ghccMath
 {
