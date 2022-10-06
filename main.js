@@ -164,7 +164,7 @@ async function render(curr_time)
     prev_time = curr_time;
     
     if (state != engine_state.PAUSED)
-    { 
+    {
         draw(DeltaTime); 
     }
 

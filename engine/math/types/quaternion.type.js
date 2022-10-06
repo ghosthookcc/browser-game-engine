@@ -1,4 +1,4 @@
-import { QUATERNION } from "./base/quaternion.base.type.js";
+import { QUATERNION } from "./base/quaternion.base.js";
 
 export class Quaternion extends QUATERNION
 {
@@ -6,10 +6,10 @@ export class Quaternion extends QUATERNION
 	{
 
 		super();
-		this.x = parseFloat(x) ?? null;
-		this.y = parseFloat(y) ?? null;
-		this.z = parseFloat(z) ?? null; 
-		this.w = parseFloat(w) ?? null;
+		this.x = x;
+		this.y = y;
+		this.z = z; 
+		this.w = w;
 		return this;
 	}
 }

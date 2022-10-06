@@ -1,11 +1,20 @@
 export * from "gl-matrix-math";
 
-export { gl, entry } from "./modules/globals.js";
+export { gl, entry } from "./core/globals.js";
 
-export * as GUI from "./modules/gui.js";
+export { GLBuffer } from "./core/buffers/base/buffer.base.js";
+export { VAO } from "./core/buffers/vertexArray.buffer.js";
+export { VBO } from "./core/buffers/vertex.buffer.js";
 
-export { SHADERSOURCES, Shader } from "./modules/shader.js";
-export { Perspective } from "./modules/perspective.js";
-export { } from "./modules/buffer.js";
+export { Camera } from "./core/cameras/base/camera.base.js";
+export { PerspectiveCamera } from "./core/cameras/perspective.camera.js";
+
+export { Renderer } from "./core/renderers/base/renderer.base.js";
+export { WebGL2Renderer } from "./core/renderers/WebGL2.renderer.js";
+
+export { Perspective } from "./gl/perspective.js";
+export { SHADERSOURCES, Shader } from "./gl/shader.js";
+
+export * as GUI from "./GUI/gui.js";
 
 

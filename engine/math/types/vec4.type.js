@@ -1,4 +1,4 @@
-import { VEC } from "./base/vec.base.type.js";
+import { VEC } from "./base/vec.base.js";
 
 export class Vec4 extends VEC
 {
@@ -6,10 +6,10 @@ export class Vec4 extends VEC
 	{
 
 		super();
-		this.x = parseFloat(x) ?? null;
-		this.y = parseFloat(y) ?? null;
-		this.z = parseFloat(z) ?? null; 
-		this.w = parseFloat(w) ?? null;
+		this.x = x;
+		this.y = y;
+		this.z = z; 
+		this.w = w;
 		return this;
 	}
 }

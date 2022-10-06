@@ -1,4 +1,4 @@
-import { entry, gl } from "./globals.js";
+import { gl } from "../core/globals.js";
 import { normal_vert_source, normal_frag_source } from "./shaders/normal.shader.js"; 
 
 export const SHADERSOURCES = Object.freeze(

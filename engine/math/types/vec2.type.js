@@ -1,13 +1,12 @@
-import { VEC } from "./base/vec.base.type.js";
+import { VEC } from "./base/vec.base.js";
 
 export class Vec2 extends VEC
 {
 	constructor(x, y)
 	{
-
 		super();
-		this.x = parseFloat(x) ?? null;
-		this.y = parseFloat(y) ?? null;
+		this.x = x;
+		this.y = y;
 		return this;
 	}
 }

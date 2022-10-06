@@ -1,4 +1,4 @@
-import { gl, math } from "./globals.js";
+import { gl, math } from "../core/globals.js";
 
 export class Perspective
 {

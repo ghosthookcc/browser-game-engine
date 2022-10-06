@@ -1,16 +1,16 @@
-import { MATRIX } from "./types/base/matrix.base.type.js";
+import { MATRIX } from "./types/base/matrix.base.js";
 
 import { Mat4x4 } from "./types/mat4x4.type.js";
 import { Mat3x3 } from "./types/mat3x3.type.js";
 import { Mat2x2 } from "./types/mat2x2.type.js";
 
-import { VEC } from "./types/base/vec.base.type.js";
+import { VEC } from "./types/base/vec.base.js";
 
 import { Vec4 } from "./types/vec4.type.js";
 import { Vec3 } from "./types/vec3.type.js";
 import { Vec2 } from "./types/vec2.type.js";
 
-import { QUATERNION } from "./types/base/quaternion.base.type.js";
+import { QUATERNION } from "./types/base/quaternion.base.js";
 
 import { Quaternion } from "./types/quaternion.type.js";
 
