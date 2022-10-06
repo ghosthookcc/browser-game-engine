@@ -108,8 +108,6 @@ const PREP_CANVAS = () =>
     GHCC.gl.enable(GHCC.gl.DEPTH_TEST);
     GHCC.gl.depthFunc(GHCC.gl.LEQUAL);
     GHCC.gl.clear(GHCC.gl.COLOR_BUFFER_BIT | GHCC.gl.DEPTH_BUFFER_BIT);
-
-    PerspectiveObj.resize(GHCC.entry)
 } 
 
 let rotation = 0.0;
@@ -137,6 +135,7 @@ const engine_state = Object.freeze(
     STOPPED: 2,
 });
 
+window.addEventListener("resize", PerspectiveObj.resize(GHCC.entry));
 
 var state = engine_state.RUNNING;
 document.addEventListener("keydown", (event) => 
@@ -168,6 +167,8 @@ async function render(curr_time)
         draw(DeltaTime); 
     }
 
+    GHCC.GUI.set_fps(1000.0 / DeltaTime);
+
     let frame_time = await next_frame(DeltaTime, 144);
     let fps = Math.round(1000.0 / frame_time);
 
@@ -195,6 +196,6 @@ window.onload = function()
 {
     const main = new function() 
     { 
-        render(performance.now()); 
+        window.requestAnimationFrame(render);
     };
 };

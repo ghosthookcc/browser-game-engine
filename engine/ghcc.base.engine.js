@@ -12,6 +12,9 @@ export { PerspectiveCamera } from "./core/cameras/perspective.camera.js";
 export { Renderer } from "./core/renderers/base/renderer.base.js";
 export { WebGL2Renderer } from "./core/renderers/WebGL2.renderer.js";
 
+export { Time } from "./core/time/base/time.base.js";
+export { GameTime } from "./core/time/game.time.js";
+
 export { Perspective } from "./gl/perspective.js";
 export { SHADERSOURCES, Shader } from "./gl/shader.js";
 
