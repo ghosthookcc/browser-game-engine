@@ -115,7 +115,7 @@ function draw(DeltaTime)
 {
     PREP_CANVAS();
 
-    rotation = 0.001 * DeltaTime;
+    rotation = 1.0 * DeltaTime;
     mat4.rotate(PerspectiveObj.getModViewMat(),     
                 PerspectiveObj.getModViewMat(),     
                 rotation * 0.65,
@@ -154,20 +154,17 @@ document.addEventListener("keydown", (event) =>
     }
 });
 
-let prev_time = 0.0;
-async function render(curr_time)
+const game_time = new GHCC.GameTime();
+async function render()
 {
     if (state === engine_state.STOPPED) return 0;
 
-    const DeltaTime = curr_time - prev_time;
-    prev_time = curr_time;
+    const DeltaTime = game_time.DeltaTime();
     
     if (state != engine_state.PAUSED)
     {
         draw(DeltaTime); 
     }
-
-    GHCC.GUI.set_fps(1000.0 / DeltaTime);
 
     let frame_time = await next_frame(DeltaTime, 144);
     let fps = Math.round(1000.0 / frame_time);
@@ -184,11 +181,11 @@ const next_frame = async (DeltaTime, fps) =>
         const DeltaCurrFrame = FullFrameTime - DeltaTime;
         setTimeout(function()
         {
-            render(performance.now());
+            render();
         }, DeltaCurrFrame);
-    } else { render(performance.now()); }
+    } else { render(); }
 
-    let frame_time = FullFrameTime - (performance.now() - prev_time);
+    let frame_time = FullFrameTime - game_time.DeltaTime();
     return frame_time;
 };
 
