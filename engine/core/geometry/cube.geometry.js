@@ -1,0 +1,108 @@
+import { gl } from "../globals.js";
+
+import { Geometry } from "./base/geometry.base.js";
+
+import { VAO } from "../buffers/vertexArray.buffer.js";
+import { VBO } from "../buffers/vertex.buffer.js";
+
+export class Cube extends Geometry
+{
+	constructor(ShaderObj)
+	{
+		super();
+
+		this.VBO_OBJ = new VBO();
+		this.VAO_OBJ = new VAO();
+
+		this.VBO_OBJ.Buffer(gl.ARRAY_BUFFER, true);
+		this.pos_attrib_loc = ShaderObj.getAttribLoc("in_position");
+		
+		this.VAO_OBJ.VertexAttribPtr(this.pos_attrib_loc, 3, gl.FLOAT, false, 0, 0);
+		this.VAO_OBJ.EnableVertexAttrib(this.pos_attrib_loc);
+
+		Geometry.prototype.verts = 
+		[
+    		// Front face
+    		-1.0, -1.0,  1.0,
+    		1.0, -1.0,  1.0,
+    		1.0,  1.0,  1.0,
+    		-1.0,  1.0,  1.0,
+
+    		// Back face
+    		-1.0, -1.0, -1.0,
+    		-1.0,  1.0, -1.0,
+    		1.0,  1.0, -1.0,
+    		1.0, -1.0, -1.0,
+
+    		// Top face
+    		-1.0,  1.0, -1.0,
+    		-1.0,  1.0,  1.0,
+    		1.0,  1.0,  1.0,
+    		1.0,  1.0, -1.0,
+
+    		// Bottom face
+    		-1.0, -1.0, -1.0,
+    		1.0, -1.0, -1.0,
+  	  		1.0, -1.0,  1.0,
+    		-1.0, -1.0,  1.0,
+
+    		// Right face
+    		1.0, -1.0, -1.0,
+    		1.0,  1.0, -1.0,
+    		1.0,  1.0,  1.0,
+    		1.0, -1.0,  1.0,
+
+   	 		// Left face
+    		-1.0, -1.0, -1.0,
+    		-1.0, -1.0,  1.0,
+    		-1.0,  1.0,  1.0,
+    		-1.0,  1.0, -1.0,
+		];
+		this.VBO_OBJ.BufferData(gl.ARRAY_BUFFER, this.VBO_OBJ.curr_buffer, 
+							    new Float32Array(Geometry.prototype.verts)); 
+
+		this.VBO_OBJ.Buffer(gl.ARRAY_BUFFER, true);
+		this.color_attrib_loc = ShaderObj.getAttribLoc("in_color");
+		
+		this.VAO_OBJ.VertexAttribPtr(this.color_attrib_loc, 3, gl.FLOAT, false, 0, 0);
+		this.VAO_OBJ.EnableVertexAttrib(this.color_attrib_loc);
+
+		Geometry.prototype.colors = 
+		[
+    		[1.0,  1.0,  0.0, 1.0],    // Front face: red_green_mix
+    		[0.6,  0.0,  0.0, 0.0],    // Back face: dark_red
+    		[0.0,  0.8,  0.0, 1.0],    // Top face: light_green
+    		[0.0,  0.0,  1.0, 1.0],    // Bottom face: blue
+    		[0.4,  0.8,  0.2, 1.0],    // Right face: some_rgb_value
+    		[1.0,  0.0,  1.0, 1.0],    // Left face: purple
+		];
+
+		var colors = [];
+		var temp = [];
+		for (var j = 0; j < Geometry.prototype.colors.length; j++) 
+		{
+    		const c = Geometry.prototype.colors[j];
+ 			colors = colors.concat(c, c, c, c);
+		}
+		this.VBO_OBJ.BufferData(gl.ARRAY_BUFFER, this.VBO_OBJ.curr_buffer, 
+								new Float32Array(colors));   
+
+		this.VBO_OBJ.Buffer(gl.ELEMENT_ARRAY_BUFFER, true);
+		Geometry.prototype.indcs = 
+		[
+    		0,  1,  2,    0,  2,  3,    // Front face
+    		4,  5,  6,    4,  6,  7,    // Back face
+    		8,  9,  10,   8,  10, 11,   // Top face
+    		12, 13, 14,   12, 14, 15,   // Bottom face
+    		16, 17, 18,   16, 18, 19,   // Right face
+    		20, 21, 22,   20, 22, 23,   // Left face
+		];
+		this.VBO_OBJ.BufferData(gl.ELEMENT_ARRAY_BUFFER, this.VBO_OBJ.curr_buffer,
+								new Uint16Array(Geometry.prototype.indcs));  
+	}
+
+	draw()
+	{
+		gl.drawElements(gl.TRIANGLES, 36, gl.UNSIGNED_SHORT, 0);
+	}
+}

@@ -56,6 +56,11 @@ export class Shader
 		gl.uniformMatrix4fv(uniform_loc, transpose, mat4);
 	}
 
+	getAttribLoc(attrib_name)
+	{
+		return gl.getAttribLocation(this._curr_program, attrib_name);
+	}
+
 	_checkShaderErrors(shader_obj, type)
 	{
 		let error = undefined;

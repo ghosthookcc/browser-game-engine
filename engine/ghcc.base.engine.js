@@ -9,6 +9,9 @@ export { VBO } from "./core/buffers/vertex.buffer.js";
 export { Camera } from "./core/cameras/base/camera.base.js";
 export { PerspectiveCamera } from "./core/cameras/perspective.camera.js";
 
+export { Geometry } from "./core/geometry/base/geometry.base.js";
+export { Cube } from "./core/geometry/cube.geometry.js";
+
 export { Renderer } from "./core/renderers/base/renderer.base.js";
 export { WebGL2Renderer } from "./core/renderers/WebGL2.renderer.js";
 
