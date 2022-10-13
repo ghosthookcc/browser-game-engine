@@ -1,4 +1,4 @@
-import { gl } from "../globals.js";
+import { gl, ShaderObj } from "../globals.js";
 
 import { Geometry } from "./base/geometry.base.js";
 
@@ -7,7 +7,7 @@ import { VBO } from "../buffers/vertex.buffer.js";
 
 export class Cube extends Geometry
 {
-	constructor(ShaderObj)
+	constructor(sizeX, sizeY, sizeZ)
 	{
 		super();
 
@@ -23,43 +23,42 @@ export class Cube extends Geometry
 		Geometry.prototype.verts = 
 		[
     		// Front face
-    		-1.0, -1.0,  1.0,
-    		1.0, -1.0,  1.0,
-    		1.0,  1.0,  1.0,
-    		-1.0,  1.0,  1.0,
+    		-sizeX, -sizeY,  sizeZ,
+    		 sizeX, -sizeY,  sizeZ,
+    		 sizeX,  sizeY,  sizeZ,
+    		-sizeX,  sizeY,  sizeZ,
 
     		// Back face
-    		-1.0, -1.0, -1.0,
-    		-1.0,  1.0, -1.0,
-    		1.0,  1.0, -1.0,
-    		1.0, -1.0, -1.0,
+    		-sizeX, -sizeY, -sizeZ,
+    		-sizeX,  sizeY, -sizeZ,
+    		 sizeX,  sizeY, -sizeZ,
+    		 sizeX, -sizeY, -sizeZ,
 
     		// Top face
-    		-1.0,  1.0, -1.0,
-    		-1.0,  1.0,  1.0,
-    		1.0,  1.0,  1.0,
-    		1.0,  1.0, -1.0,
+    		-sizeX,  sizeY, -sizeZ,
+    		-sizeX,  sizeY,  sizeZ,
+    		 sizeX,  sizeY,  sizeZ,
+    		 sizeX,  sizeY, -sizeZ,
 
     		// Bottom face
-    		-1.0, -1.0, -1.0,
-    		1.0, -1.0, -1.0,
-  	  		1.0, -1.0,  1.0,
-    		-1.0, -1.0,  1.0,
+    		-sizeX, -sizeY, -sizeZ,
+    		 sizeX, -sizeY, -sizeZ,
+  	  		 sizeX, -sizeY,  sizeZ,
+    		-sizeX, -sizeY,  sizeZ,
 
     		// Right face
-    		1.0, -1.0, -1.0,
-    		1.0,  1.0, -1.0,
-    		1.0,  1.0,  1.0,
-    		1.0, -1.0,  1.0,
+    		sizeX, -sizeY, -sizeZ,
+    		sizeX,  sizeY, -sizeZ,
+    		sizeX,  sizeY,  sizeZ,
+    		sizeX, -sizeY,  sizeZ,
 
    	 		// Left face
-    		-1.0, -1.0, -1.0,
-    		-1.0, -1.0,  1.0,
-    		-1.0,  1.0,  1.0,
-    		-1.0,  1.0, -1.0,
+    		-sizeX, -sizeY, -sizeZ,
+    		-sizeX, -sizeY,  sizeZ,
+    		-sizeX,  sizeY,  sizeZ,
+    		-sizeX,  sizeY, -sizeZ,
 		];
-		this.VBO_OBJ.BufferData(gl.ARRAY_BUFFER, this.VBO_OBJ.curr_buffer, 
-							    new Float32Array(Geometry.prototype.verts)); 
+		this.VBO_OBJ.BufferData(gl.ARRAY_BUFFER, new Float32Array(Geometry.prototype.verts)); 
 
 		this.VBO_OBJ.Buffer(gl.ARRAY_BUFFER, true);
 		this.color_attrib_loc = ShaderObj.getAttribLoc("in_color");
@@ -67,7 +66,7 @@ export class Cube extends Geometry
 		this.VAO_OBJ.VertexAttribPtr(this.color_attrib_loc, 3, gl.FLOAT, false, 0, 0);
 		this.VAO_OBJ.EnableVertexAttrib(this.color_attrib_loc);
 
-		Geometry.prototype.colors = 
+		const base_colors = 
 		[
     		[1.0,  1.0,  0.0, 1.0],    // Front face: red_green_mix
     		[0.6,  0.0,  0.0, 0.0],    // Back face: dark_red
@@ -77,15 +76,14 @@ export class Cube extends Geometry
     		[1.0,  0.0,  1.0, 1.0],    // Left face: purple
 		];
 
-		var colors = [];
+		Geometry.prototype.colors = [];
 		var temp = [];
-		for (var j = 0; j < Geometry.prototype.colors.length; j++) 
+		for (var j = 0; j < base_colors.length; j++) 
 		{
-    		const c = Geometry.prototype.colors[j];
- 			colors = colors.concat(c, c, c, c);
+    		const c = base_colors[j];
+ 			Geometry.prototype.colors = Geometry.prototype.colors.concat(c, c, c, c);
 		}
-		this.VBO_OBJ.BufferData(gl.ARRAY_BUFFER, this.VBO_OBJ.curr_buffer, 
-								new Float32Array(colors));   
+		this.VBO_OBJ.BufferData(gl.ARRAY_BUFFER, new Float32Array(Geometry.prototype.colors));   
 
 		this.VBO_OBJ.Buffer(gl.ELEMENT_ARRAY_BUFFER, true);
 		Geometry.prototype.indcs = 
@@ -97,8 +95,7 @@ export class Cube extends Geometry
     		16, 17, 18,   16, 18, 19,   // Right face
     		20, 21, 22,   20, 22, 23,   // Left face
 		];
-		this.VBO_OBJ.BufferData(gl.ELEMENT_ARRAY_BUFFER, this.VBO_OBJ.curr_buffer,
-								new Uint16Array(Geometry.prototype.indcs));  
+		this.VBO_OBJ.BufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(Geometry.prototype.indcs));  
 	}
 
 	draw()

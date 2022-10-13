@@ -1,4 +1,4 @@
-import { gl, math } from "../core/globals.js";
+import { gl, entry, math } from "../core/globals.js";
 
 export class Perspective
 {
@@ -36,25 +36,6 @@ export class Perspective
 		mat4.translate(this.getModViewMat(),
                		   this.getModViewMat(),
                		   [start_pos.x, start_pos.y, start_pos.z]);
-	}
-
-	resize(canvas) 
-	{
-    	// lookup the size the browser is displaying the canvas
-    	const expectedWidth  = canvas.clientWidth;
-    	const expectedHeight = canvas.clientHeight;
-
-    	// check if the canvas is not the same size
-    	if (canvas.width  !== expectedWidth ||
-        	canvas.height !== expectedHeight) 
-    	{	
-
-      		// make the canvas the same size
-      		canvas.width  = expectedWidth;
-      		canvas.height = expectedHeight;
-    	}
-
-        gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 	}
 
 	getProjMat()

@@ -19,9 +19,8 @@ export class VBO extends GLBuffer
 		}
 	}
 
-	BufferData(buffer_type, buffer, data)
+	BufferData(buffer_type, data)
 	{
-		super.BindSpecificBuffer(buffer_type, buffer);
 		gl.bufferData(buffer_type, data, gl.STATIC_DRAW);     
 	}  
 }

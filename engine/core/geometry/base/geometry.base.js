@@ -5,6 +5,7 @@ export class Geometry
 	constructor()
 	{
 		Geometry.prototype.verts = new Float32Array();
+		Geometry.prototype.colors = new Float32Array();
 		Geometry.prototype.indcs = new Uint16Array();
 	}
 }
