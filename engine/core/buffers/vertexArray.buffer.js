@@ -18,9 +18,4 @@ export class VAO extends GLBuffer
 	{
 		gl.enableVertexAttribArray(attrib_idx);
 	}
-
-	GetAttribLoc(program, attrib_name)
-	{
-		gl.getAttribLocation(GLBuffer.prototype.ShaderObj.getProgram(), attrib_name);
-	}
 }

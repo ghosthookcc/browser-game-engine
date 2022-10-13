@@ -5,20 +5,10 @@ console.log(GHCC);
 const renderer = new GHCC.WebGLRenderer();
 const CUBE = new GHCC.Cube(1.0, 1.0, 1.0);
 
-let rotation = 0.0;
 function draw(DeltaTime)
 {
-    rotation = 1.0 * DeltaTime;
-    mat4.rotate(GHCC.PerspectiveObj.getModViewMat(),     
-                GHCC.PerspectiveObj.getModViewMat(),     
-                rotation * 0.65,
-                [1, 1, 0]);
-
-    GHCC.ShaderObj.setUniformMat4fv(GHCC.ShaderObj.getUniformLoc("modelViewMatrix"), false, 
-                                    GHCC.PerspectiveObj.getModViewMat());
-
-    renderer.draw();    
-    CUBE.draw(); 
+    renderer.draw(DeltaTime);    
+    CUBE.draw(DeltaTime); 
 }
 
 const engine_state = Object.freeze(
@@ -68,6 +58,6 @@ window.onload = function()
 {
     const main = new function() 
     { 
-        window.requestAnimationFrame(render);
+        render();
     };
 };
