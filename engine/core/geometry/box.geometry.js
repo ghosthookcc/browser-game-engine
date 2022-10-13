@@ -5,7 +5,7 @@ import { Geometry } from "./base/geometry.base.js";
 import { VAO } from "../buffers/vertexArray.buffer.js";
 import { VBO } from "../buffers/vertex.buffer.js";
 
-export class Cube extends Geometry
+export class Box extends Geometry
 {
 	constructor(sizeX, sizeY, sizeZ)
 	{

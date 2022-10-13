@@ -19,7 +19,7 @@ export class GameTime extends Time
 	async next_frame(render)
 	{
     	let FullFrameTime = 1000.0 / this.fps;
-    	if (this._DeltaTime < FullFrameTime) 
+    	if (this._DeltaTime < FullFrameTime)
     	{
         	const DeltaCurrFrame = FullFrameTime - this._DeltaTime;
         	setTimeout(function()

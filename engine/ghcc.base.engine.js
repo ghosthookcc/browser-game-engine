@@ -1,6 +1,7 @@
 export * from "gl-matrix-math";
 
 export { PerspectiveObj, ShaderObj } from "./core/globals.js";
+export { state, engine_states } from "./core/engine.state.js";
 
 export { GLBuffer } from "./core/buffers/base/buffer.base.js";
 export { VAO } from "./core/buffers/vertexArray.buffer.js";
@@ -10,7 +11,7 @@ export { Camera } from "./core/cameras/base/camera.base.js";
 export { PerspectiveCamera } from "./core/cameras/perspective.camera.js";
 
 export { Geometry } from "./core/geometry/base/geometry.base.js";
-export { Cube } from "./core/geometry/cube.geometry.js";
+export { Box } from "./core/geometry/box.geometry.js";
 
 export { Mesh } from "./core/geometry/mesh/base/mesh.base.js";
 export { BasicMesh } from "./core/geometry/mesh/basic.mesh.js";
