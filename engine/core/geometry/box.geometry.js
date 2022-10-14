@@ -20,8 +20,6 @@ export class Box extends Geometry
 		this.VAO_OBJ.VertexAttribPtr(this.pos_attrib_loc, 3, gl.FLOAT, false, 0, 0);
 		this.VAO_OBJ.EnableVertexAttrib(this.pos_attrib_loc);
 		
-		this.rotation = 0.0;
-		
 		Geometry.prototype.verts = 
 		[
     		// Front face
@@ -45,7 +43,7 @@ export class Box extends Geometry
     		// Bottom face
     		-sizeX, -sizeY, -sizeZ,
     		 sizeX, -sizeY, -sizeZ,
-  	  		 sizeX, -sizeY,  sizeZ,
+    		 sizeX, -sizeY,  sizeZ,
     		-sizeX, -sizeY,  sizeZ,
 
     		// Right face
@@ -98,17 +96,11 @@ export class Box extends Geometry
     		20, 21, 22,   20, 22, 23,   // Left face
 		];
 		this.VBO_OBJ.BufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(Geometry.prototype.indcs));  
+		super.set_mesh();
 	}
 
-	draw(DeltaTime)
+	draw()
 	{
-		this.rotation = 1.0 * DeltaTime;
-    	mat4.rotate(PerspectiveObj.getModViewMat(),     
-         	        PerspectiveObj.getModViewMat(),     
-             	    this.rotation * 0.65,
-                	[1, 1, 0]);
-    	ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("modelViewMatrix"), false, 
-                    	           PerspectiveObj.getModViewMat());
 		gl.drawElements(gl.TRIANGLES, 36, gl.UNSIGNED_SHORT, 0);
 	}
 }

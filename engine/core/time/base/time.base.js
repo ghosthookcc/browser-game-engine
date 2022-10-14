@@ -28,7 +28,7 @@ export class Time
 		return Time.prototype.active;
 	}
 
-	stop()
+	stop() 
 	{
 		Time.prototype.prev_time = undefined;
 		Time.prototype._elapsed = undefined;

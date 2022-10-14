@@ -2,7 +2,7 @@ import { Time } from "./base/time.base.js";
 
 export class GameTime extends Time 
 {
-	fps = 60
+	fps = 144
 	_DeltaTime = 0.0;
 	constructor()
 	{

@@ -16,11 +16,10 @@ export class WebGLRenderer extends Renderer
 		super();
 		this._game_time = new GameTime();
 		this._game_loop = callback; 
-		this.CUBE = new Box(1.0, 1.0, 1.0);
 		window.onload = () => callback();
 	}
 
-	async render()
+	async render(obj)
 	{
 		if (state === engine_states.STOPPED) return 0;
 
@@ -29,13 +28,14 @@ export class WebGLRenderer extends Renderer
 		if (state != engine_states.PAUSED)
     	{
 			super.PREP_CANVAS();
-			this.CUBE.draw(this.DeltaTime);
+			obj.update();
+			obj.draw();
 		}
 
-		let frame_time = await this._game_time.next_frame(this._game_loop);
-    	let fps = Math.round(1000.0 / frame_time);
-
+		let fps = Math.round(1.0 / this.DeltaTime);
     	GUI.set_fps(fps);
+
+		let frame_time = await this._game_time.next_frame(this._game_loop);
     	GUI.set_frame_time(frame_time);
 	}
 }

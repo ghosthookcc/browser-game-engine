@@ -1,11 +1,23 @@
 import { gl } from "../../globals.js";
 
-export class Geometry 
+import { BasicMesh } from "../mesh/basic.mesh.js";
+
+export class Geometry extends BasicMesh 
 {
 	constructor()
 	{
-		Geometry.prototype.verts = new Float32Array();
-		Geometry.prototype.colors = new Float32Array();
-		Geometry.prototype.indcs = new Uint16Array();
+		super();
+		Geometry.prototype.verts = null;
+		Geometry.prototype.colors = null;
+		Geometry.prototype.indcs = null;
+	}
+
+	set_mesh()
+	{
+		BasicMesh.prototype.Geometry = { 
+									   	 verts: new Float32Array(Geometry.prototype.verts),
+										 colors: new Float32Array(Geometry.prototype.colors),
+										 indcs: new Uint16Array(Geometry.prototype.indcs) 
+									   };	
 	}
 }
