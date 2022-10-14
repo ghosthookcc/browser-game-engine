@@ -33,8 +33,8 @@ export class Time
 		Time.prototype.prev_time = undefined;
 		Time.prototype._elapsed = undefined;
 		Time.prototype.elapsed_time = undefined;
-		this.start_time = undefined;
 		Time.prototype.active = false;
+		this.start_time = undefined;
 	}
 
 	now()
