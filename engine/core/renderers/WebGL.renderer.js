@@ -16,10 +16,16 @@ export class WebGLRenderer extends Renderer
 		super();
 		this._game_time = new GameTime();
 		this._game_loop = callback; 
+		this._game_objs = new Array();
 		window.onload = () => callback();
 	}
 
-	async render(obj)
+	add(game_obj)
+	{
+		this._game_objs.push(game_obj);
+	}
+
+	async render()
 	{
 		if (state === engine_states.STOPPED) return 0;
 
@@ -28,8 +34,11 @@ export class WebGLRenderer extends Renderer
 		if (state != engine_states.PAUSED)
     	{
 			super.PREP_CANVAS();
-			obj.update();
-			obj.draw();
+			this._game_objs.forEach(game_obj =>
+			{
+				game_obj.update();
+				game_obj.draw();
+			});
 		}
 
 		let fps = Math.round(1.0 / this.DeltaTime);

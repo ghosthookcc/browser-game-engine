@@ -3,6 +3,8 @@ import * as GHCC from "ghcc";
 const renderer = new GHCC.WebGLRenderer(animate);
 const CUBE = new GHCC.Box(1.0, 1.0, 1.0);
 
+renderer.add(CUBE);
+
 function animate()
 {
     const rotation = 1.0 * renderer.DeltaTime * 0.65;

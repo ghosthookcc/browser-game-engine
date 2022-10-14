@@ -8,17 +8,11 @@ export class Mesh
 	{
 		Mesh.prototype.position = math.Vec3(0.0, 0.0, 0.0);
 		Mesh.prototype.rotation = math.Vec3(0.0, 0.0, 0.0);
-
-		Mesh.prototype.newRotX = false;
-		Mesh.prototype.newRotY = false;
-		Mesh.prototype.newRotZ = false;
 	}
 
-	update()
+	translate()
 	{
-		this.rotate();
-	    ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("modelViewMatrix"), false, 
-                    	           PerspectiveObj.getModViewMat());
+		
 	}
 
 	rotate()

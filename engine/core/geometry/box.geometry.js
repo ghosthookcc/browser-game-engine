@@ -99,6 +99,13 @@ export class Box extends Geometry
 		super.set_mesh();
 	}
 
+	update()
+	{
+		super.rotate();
+	    ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("modelViewMatrix"), false, 
+                    	           PerspectiveObj.getModViewMat());
+	}
+
 	draw()
 	{
 		gl.drawElements(gl.TRIANGLES, 36, gl.UNSIGNED_SHORT, 0);
