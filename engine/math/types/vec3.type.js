@@ -4,7 +4,6 @@ export class Vec3 extends VEC
 {
 	constructor(x, y, z)
 	{
-
 		super();
 		this.x = x;
 		this.y = y;

@@ -3,7 +3,7 @@ export class Time
 	start_time = undefined;
 	constructor(autostart)
 	{
-		if (autostart === true) { this.start(); }  
+		if (autostart) this.start();
 	}
 
 	start()

@@ -16,7 +16,6 @@ export class GLBuffer
 			gl.bindBuffer(buffer_type, GLBuffer.prototype.curr_buffer);
 			DidBind = true;
 		}
-
 		return DidBind;
 	}
 
@@ -28,7 +27,6 @@ export class GLBuffer
 			gl.bindBuffer(buffer_type, buffer);
 			DidBind = true;
 		}
-
 		return DidBind;
 	}
 }

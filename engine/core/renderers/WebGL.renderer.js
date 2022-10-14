@@ -43,8 +43,7 @@ export class WebGLRenderer extends Renderer
 
 		let fps = Math.round(1.0 / this.DeltaTime);
     	GUI.set_fps(fps);
-
-		let frame_time = await this._game_time.next_frame(this._game_loop);
-    	GUI.set_frame_time(frame_time);
+    	GUI.set_frame_time(1000.0 / fps);
+		await this._game_time.next_frame(this._game_loop);
 	}
 }

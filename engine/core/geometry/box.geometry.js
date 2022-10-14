@@ -101,7 +101,8 @@ export class Box extends Geometry
 
 	update()
 	{
-		super.rotate();
+		if (super.new_translation) { super.translate(); super.new_translation = false; }
+		if (super.new_rotation) { super.rotate(); super.new_rotation = false; }
 	    ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("modelViewMatrix"), false, 
                     	           PerspectiveObj.getModViewMat());
 	}

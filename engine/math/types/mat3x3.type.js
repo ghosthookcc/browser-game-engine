@@ -8,7 +8,7 @@ export class Mat3x3 extends MATRIX
 		this.mat3x3 = [0, 0, 0,
 		   	 		   0, 0, 0,
 		   			   0, 0, 0];
-		if (identity === true)
+		if (identity)
 		{
 			this.mat3x3[0] = 1;
 			this.mat3x3[5] = 1;

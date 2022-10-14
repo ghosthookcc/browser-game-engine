@@ -9,7 +9,7 @@ export class Mat4x4 extends MATRIX
 		   			   0, 0, 0, 0,
 		   			   0, 0, 0, 0,
 			   	       0, 0, 0, 0];
-		if (identity === true)
+		if (identity)
 		{
 			this.mat4x4[0] = 1;
 			this.mat4x4[5] = 1;

@@ -13,10 +13,7 @@ export class VBO extends GLBuffer
 	{
 		GLBuffer.prototype.curr_buffer = gl.createBuffer();
 		GLBuffer.prototype.buffers.push(GLBuffer.prototype.curr_buffer);
-		if (bind_new === true)
-		{
-			super.BindBuffer(buffer_type);
-		}
+		if (bind_new) super.BindBuffer(buffer_type);
 	}
 
 	BufferData(buffer_type, data)
