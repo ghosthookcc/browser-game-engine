@@ -5,6 +5,11 @@ export class BasicMesh extends Mesh
 	constructor()
 	{
 		super();
-		BasicMesh.prototype.Geometry = null;
+		this.Geometry = null;
+	}
+
+	set_geometry(geometry)
+	{
+		this.Geometry = geometry;
 	}
 }

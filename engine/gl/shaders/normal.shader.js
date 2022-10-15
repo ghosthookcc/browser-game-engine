@@ -4,11 +4,12 @@ export const normal_vert_source = `#version 300 es
 
     out lowp vec3 v_out_color;
 
-    uniform mat4 modelViewMatrix;
-    uniform mat4 projMatrix;
+    uniform mat4 projViewMatrix;
+    uniform mat4 modelMatrix;
+    uniform vec3 offset;
 
     void main() {
-      gl_Position = projMatrix * modelViewMatrix * vec4(in_position, 1.0);
+      gl_Position = projViewMatrix * modelMatrix * (vec4(in_position + offset, 1.0));
       v_out_color = in_color;
     }
 `;

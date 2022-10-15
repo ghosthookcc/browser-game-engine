@@ -8,7 +8,7 @@ export class Perspective
 	_z_far = 100.0;
 	
 	_proj_mat = math.Mat4x4(true);
-	_mod_view_mat = math.Mat4x4(true);	
+	_view_mat = math.Mat4x4(true);	
 
 	_start_pos = math.Vec3(0.0, 0.0, -5.0);
 
@@ -25,26 +25,26 @@ export class Perspective
 		this.z_far = z_far;
 		this.proj_mat = proj_mat;
 
-		mat4.perspective(this.getProjMat(), 
+		mat4.perspective(this.getProjViewMat(), 
 						 fov,
 						 aspect,
 						 z_near,
 						 z_far,
-						 this.getProjMat());
+						 this.getProjViewMat());
 
 		this.start_pos = start_pos;
-		mat4.translate(this.getModViewMat(),
-               		   this.getModViewMat(),
+		mat4.translate(this.getProjViewMat(),
+               		   this.getProjViewMat(),
                		   [start_pos.x, start_pos.y, start_pos.z]);
 	}
 
-	getProjMat()
+	getViewMat()
 	{
-		return this._proj_mat;
+		return this._view_mat;
 	}
 
-	getModViewMat()
+	getProjViewMat()
 	{
-		return this._mod_view_mat;
+		return this._proj_mat;
 	}
 }

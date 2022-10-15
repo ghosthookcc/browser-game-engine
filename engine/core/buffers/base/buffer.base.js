@@ -4,29 +4,38 @@ export class GLBuffer
 {
 	constructor()
 	{
-		GLBuffer.prototype.buffers = new Array();
-		GLBuffer.prototype.curr_buffer = -1;  
+		this.vbo_buffers = new Array();
+		this.curr_vbo = -1;  
+		
+		this.vao_buffers = new Array();
+		this.curr_vao = -1;
 	}
 
-	BindBuffer(buffer_type)
+	get_vbos()
 	{
-		let DidBind = false;
-		if (GLBuffer.prototype.curr_buffer != -1)
-		{
-			gl.bindBuffer(buffer_type, GLBuffer.prototype.curr_buffer);
-			DidBind = true;
-		}
-		return DidBind;
+		return this.vbo_buffers;
 	}
 
-	BindSpecificBuffer(buffer_type, buffer)
+	get_curr_vbo()
 	{
-		let DidBind = false;
-		if (GLBuffer.prototype.buffers.includes(buffer))
-		{
-			gl.bindBuffer(buffer_type, buffer);
-			DidBind = true;
-		}
-		return DidBind;
+		return this.curr_vbo;
+	}
+	set_curr_vbo(buffer)
+	{
+		this.curr_vbo = buffer;
+	}
+
+	get_vaos()
+	{
+		return this.vao_buffers;
+	}
+
+	get_curr_vao()
+	{
+		return this.curr_vao;
+	}
+	set_curr_vao(buffer)
+	{
+		this.curr_vao = buffer;
 	}
 }

@@ -1,105 +1,140 @@
-import { PerspectiveObj, ShaderObj } from "../../../globals.js";
-
-import { math } from "../../../globals.js";
+import { math, PerspectiveObj, ShaderObj } from "../../../globals.js";
 
 export class Mesh 
 {
 	constructor()
 	{
-		Mesh.prototype.position = math.Vec3(0.0, 0.0, 0.0);
-		Mesh.prototype.rotation = math.Vec3(0.0, 0.0, 0.0);
+		this.position = math.Vec3(0.0, 0.0, 0.0);
+		this.rotation = math.Vec3(0.0, 0.0, 0.0);
 
-		Mesh.prototype.new_translation = false;
-		Mesh.prototype.new_rotation = false;
+		this.modViewMat = math.Mat4x4(true);
+	
+		this.new_translation = false;
+		this.new_rotation = false;
+
+		this._position = math.Vec3(0.0, 0.0, 0.0);
 	}
 
 	translate()
 	{
-		mat4.translate(PerspectiveObj.getModViewMat(),
-           	   		   PerspectiveObj.getModViewMat(),
-              		   [Mesh.prototype.position.x, 
-               			Mesh.prototype.position.y, 
-               		    Mesh.prototype.position.z]);
+		mat4.translate(this.modViewMat,
+           	   		   this.modViewMat,
+              		   [this.position.x, 
+               			this.position.y, 
+               		    this.position.z]);
 	}
 
 	translateX(new_x)
 	{
-		Mesh.prototype.position.x = new_x;
-		Mesh.prototype.new_translation = true;
-		return Mesh.prototype.position.x;
+		this.position.x = new_x;
+		this._position.x += new_x;
+		this.new_translation = true;
+		return this.position.x;
 	}
 
 	translateY(new_y)
 	{
-		Mesh.prototype.position.y = new_y;
-		Mesh.prototype.new_translation = true;
-		return Mesh.prototype.position.y;
+		this.position.y = new_y;
+		this._position.y += this.position.y;
+		this.new_translation = true;
+		return this.position.y;
 	}
 
-	translateX(new_z)
+	translateZ(new_z)
 	{
-		Mesh.prototype.position.z = new_z;
-		Mesh.prototype.new_translation = true;
-		return Mesh.prototype.position.z;
+		this.position.z = new_z;
+		this._position.z += this.position.z;
+		this.new_translation = true;
+		return this.position.z;
 	}
-	
+
 	rotate()
 	{
-		mat4.rotate(PerspectiveObj.getModViewMat(),    
-        		    PerspectiveObj.getModViewMat(),     
-             		Mesh.prototype.rotation.x,
+		mat4.rotate(this.modViewMat,    
+        		    this.modViewMat,     
+             		this.rotation.x,
                 	[1, 0, 0]);
 		
-		mat4.rotate(PerspectiveObj.getModViewMat(),    
-        		    PerspectiveObj.getModViewMat(),     
-             		Mesh.prototype.rotation.y,
+		mat4.rotate(this.modViewMat,    
+        		    this.modViewMat,     
+             		this.rotation.y,
                 	[0, 1, 0]);
 
-		mat4.rotate(PerspectiveObj.getModViewMat(),    
-         		    PerspectiveObj.getModViewMat(),     
-             		Mesh.prototype.rotation.z,
+		mat4.rotate(this.modViewMat,    
+         		    this.modViewMat,    
+             		this.rotation.z,
                 	[0, 0, 1]);
 	}
 
 	rotateX(new_deg)
 	{
-		Mesh.prototype.rotation.x = new_deg;
-		Mesh.prototype.new_rotation = true;
-		return Mesh.prototype.rotation.x;
+		this.rotation.x = new_deg;
+		this.new_rotation = true;
+		return this.rotation.x;
 	}
 
 	rotateY(new_deg)
 	{
-		Mesh.prototype.rotation.y = new_deg;
-		Mesh.prototype.new_rotation = true;
-		return Mesh.prototype.rotation.y;
+		this.rotation.y = new_deg;
+		this.new_rotation = true;
+		return this.rotation.y;
 	}
 
 	rotateZ(new_deg)
 	{
-		Mesh.prototype.rotation.z = new_deg;
-		Mesh.prototype.new_rotation = true;
-		return Mesh.prototype.rotation.z;
+		this.rotation.z = new_deg;
+		this.new_rotation = true;
+		return this.rotation.z;
 	}
 
 	incRotateX(deg)
 	{
-		Mesh.prototype.rotation.x += deg;
-		Mesh.prototype.new_rotation = true;
-		return Mesh.prototype.rotation.x;
+		this.rotation.x += deg;
+		this.new_rotation = true;
+		return this.rotation.x;
 	}
 
 	incRotateY(deg)
 	{
-		Mesh.prototype.rotation.y += deg;
-		Mesh.prototype.new_rotation = true;
-		return Mesh.prototype.rotation.y;
+		this.rotation.y += deg;
+		this.new_rotation = true;
+		return this.rotation.y;
 	}
 
 	incRotateZ(deg)
 	{
-		Mesh.prototype.rotation.z += deg;
-		Mesh.prototype.new_rotation = true;
-		return Mesh.prototype.rotation.z;
+		this.rotation.z += deg;
+		this.new_rotation = true;
+		return this.rotation.z;
+	}
+
+	get_translation_status()
+	{
+		return this.new_translation;
+	}
+
+	set_translation_status(bool)
+	{
+		this.new_translation = bool;
+	}
+
+	get_rotation_status()
+	{
+		return this.new_rotation;
+	}
+
+	set_rotation_status(bool)
+	{
+		this.new_rotation = bool;
+	}
+
+	getPosition()
+	{
+		return this._position;
+	}
+
+	getModViewMat()
+	{
+		return this.modViewMat;
 	}
 }

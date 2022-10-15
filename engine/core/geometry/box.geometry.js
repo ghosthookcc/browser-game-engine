@@ -16,11 +16,14 @@ export class Box extends Geometry
 
 		this.VBO_OBJ.Buffer(gl.ARRAY_BUFFER, true);
 		this.pos_attrib_loc = ShaderObj.getAttribLoc("in_position");
+
+		this.VAO_OBJ.Buffer(true);
+		this.VAO_OBJ.BindBuffer();
 		
 		this.VAO_OBJ.VertexAttribPtr(this.pos_attrib_loc, 3, gl.FLOAT, false, 0, 0);
 		this.VAO_OBJ.EnableVertexAttrib(this.pos_attrib_loc);
 		
-		Geometry.prototype.verts = 
+		this.verts = 
 		[
     		// Front face
     		-sizeX, -sizeY,  sizeZ,
@@ -58,7 +61,7 @@ export class Box extends Geometry
     		-sizeX,  sizeY,  sizeZ,
     		-sizeX,  sizeY, -sizeZ,
 		];
-		this.VBO_OBJ.BufferData(gl.ARRAY_BUFFER, new Float32Array(Geometry.prototype.verts)); 
+		this.VBO_OBJ.BufferData(gl.ARRAY_BUFFER, new Float32Array(this.verts)); 
 
 		this.VBO_OBJ.Buffer(gl.ARRAY_BUFFER, true);
 		this.color_attrib_loc = ShaderObj.getAttribLoc("in_color");
@@ -76,14 +79,14 @@ export class Box extends Geometry
     		[1.0,  0.0,  1.0, 1.0],    // Left face: purple
 		];
 
-		Geometry.prototype.colors = [];
+		this.colors = [];
 		var temp = [];
 		for (var j = 0; j < base_colors.length; j++) 
 		{
     		const c = base_colors[j];
- 			Geometry.prototype.colors = Geometry.prototype.colors.concat(c, c, c, c);
+ 			this.colors = this.colors.concat(c, c, c, c);
 		}
-		this.VBO_OBJ.BufferData(gl.ARRAY_BUFFER, new Float32Array(Geometry.prototype.colors));   
+		this.VBO_OBJ.BufferData(gl.ARRAY_BUFFER, new Float32Array(this.colors));   
 
 		this.VBO_OBJ.Buffer(gl.ELEMENT_ARRAY_BUFFER, true);
 		Geometry.prototype.indcs = 
@@ -96,15 +99,25 @@ export class Box extends Geometry
     		20, 21, 22,   20, 22, 23,   // Left face
 		];
 		this.VBO_OBJ.BufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(Geometry.prototype.indcs));  
+		
+		super.set_vertices(this.verts);
 		super.set_mesh();
 	}
 
 	update()
 	{
-		if (super.new_translation) { super.translate(); super.new_translation = false; }
-		if (super.new_rotation) { super.rotate(); super.new_rotation = false; }
-	    ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("modelViewMatrix"), false, 
-                    	           PerspectiveObj.getModViewMat());
+		if (super.get_translation_status()) 
+		{ 
+			super.translate();
+			super.set_translation_status(false); 
+		}
+		if (super.get_rotation_status()) 
+		{ 
+			super.rotate();
+			super.set_rotation_status(false); 
+		}
+	    ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("modelMatrix"), false, 
+           	        	           super.getModViewMat());
 	}
 
 	draw()

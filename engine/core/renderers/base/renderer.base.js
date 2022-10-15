@@ -1,14 +1,11 @@
-import { gl, entry,
-		 PerspectiveObj, ShaderObj } from "../../globals.js";
+import { gl, entry, PerspectiveObj, ShaderObj } from "../../globals.js";
 
 export class Renderer
 {
 	constructor()
 	{
-		ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("projMatrix"), false, 
-								   PerspectiveObj.getProjMat());
-		ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("modelViewMatrix"), false, 
-								   PerspectiveObj.getModViewMat());
+		ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("projViewMatrix"), false, 
+								   PerspectiveObj.getProjViewMat());
 	}
 
 	resize() 

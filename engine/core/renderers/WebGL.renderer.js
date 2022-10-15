@@ -36,8 +36,18 @@ export class WebGLRenderer extends Renderer
 			super.PREP_CANVAS();
 			this._game_objs.forEach(game_obj =>
 			{
-				game_obj.update();
-				game_obj.draw();
+				let vao_idx = 0;
+				game_obj.VAO_OBJ.get_vaos().forEach(vao => 
+				{
+					game_obj.VAO_OBJ.BindSpecificBuffer(vao);
+					game_obj.VAO_OBJ.EnableVertexAttrib(0);
+					game_obj.VAO_OBJ.EnableVertexAttrib(1);
+					game_obj.update();
+					game_obj.draw();
+					game_obj.VAO_OBJ.DisableVertexAttrib(0);
+					game_obj.VAO_OBJ.DisableVertexAttrib(1);
+					vao_idx += 1;
+				});
 			});
 		}
 
