@@ -2,6 +2,7 @@ import { Math } from "../math/math.js";
 import { Perspective } from "../gl/perspective.js";
 import { Shader } from "../gl/shader.js";
 
+// fix so that multiple entrypoints can be renderer at the same time
 export const entry = document.querySelector("#entrypoint");
 export const gl = entry.getContext("webgl2");
 

@@ -1,6 +1,6 @@
 export * from "gl-matrix-math";
 
-export { PerspectiveObj, ShaderObj } from "./core/globals.js";
+export { math, PerspectiveObj, ShaderObj } from "./core/globals.js";
 export { state, engine_states } from "./core/engine.state.js";
 
 export { GLBuffer } from "./core/buffers/base/buffer.base.js";
@@ -26,8 +26,6 @@ export { Perspective } from "./gl/perspective.js";
 export { SHADERSOURCES, Shader } from "./gl/shader.js";
 
 export * as GUI from "./GUI/gui.js";
-
-export { math } from "./math/math.js";
 
 export { Scene } from "./scenes/base/scene.base.js";
 export { BasicScene } from "./scenes/BasicScene.scene.js";

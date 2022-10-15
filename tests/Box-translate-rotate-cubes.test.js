@@ -1,6 +1,7 @@
 import * as GHCC from "ghcc";
 
 const renderer = new GHCC.WebGLRenderer(animate);
+const scene = new GHCC.BasicScene();
 
 const CUBE1 = new GHCC.Box(0.5, 0.5, 0.5);
 const CUBE2 = new GHCC.Box(0.5, 0.5, 0.5);
@@ -8,12 +9,13 @@ const CUBE3 = new GHCC.Box(0.5, 0.5, 0.5);
 const CUBE4 = new GHCC.Box(0.5, 0.5, 0.5);
 const CUBE5 = new GHCC.Box(0.25, 1.0, 0.25);
 
-renderer.add(CUBE1);
-renderer.add(CUBE2);
-renderer.add(CUBE3);
-renderer.add(CUBE4);
-renderer.add(CUBE5);
+scene.add(CUBE1);
+scene.add(CUBE2);
+scene.add(CUBE3);
+scene.add(CUBE4);
+scene.add(CUBE5);
 
+renderer.add(scene);
 function animate()
 {
     const rotation = 1.0 * renderer.DeltaTime * 0.65;

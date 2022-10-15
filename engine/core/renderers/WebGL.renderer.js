@@ -14,43 +14,35 @@ export class WebGLRenderer extends Renderer
 	constructor(callback)
 	{
 		super();
-		this._game_time = new GameTime();
-		this._game_loop = callback; 
-		this._game_objs = new Array();
+		this._renderer_time = new GameTime();
+		this._renderer_loop = callback; 
+		this._renderer_scenes = new Array();
 		window.onload = () => callback();
 	}
 
-	add(game_obj)
+	add(renderer_scene)
 	{
-		this._game_objs.push(game_obj);
+		this._renderer_scenes.push(renderer_scene);
 	}
 
 	async render()
 	{
 		if (state === engine_states.STOPPED) return 0;
 
-		this.DeltaTime = this._game_time.DeltaTime();
+		this.DeltaTime = this._renderer_time.DeltaTime();
 
 		if (state != engine_states.PAUSED)
     	{
 			super.PREP_CANVAS();
-			this._game_objs.forEach(game_obj =>
+			this._renderer_scenes.forEach(renderer_scene => 
 			{
-				let vao_idx = 0;
-				game_obj.VAO_OBJ.get_vaos().forEach(vao => 
-				{
-					game_obj.VAO_OBJ.BindSpecificBuffer(vao);
-					game_obj.update();
-					game_obj.draw();
-					game_obj.VAO_OBJ.UnbindBuffer(vao);
-					vao_idx += 1;
-				});
+				renderer_scene.Render();
 			});
 		}
 
 		const fps = Math.round(1.0 / this.DeltaTime);
     	GUI.set_fps(fps);
     	GUI.set_frame_time(1000.0 / fps);
-		await this._game_time.next_frame(this._game_loop);
+		await this._renderer_time.next_frame(this._renderer_loop);
 	}
 }
