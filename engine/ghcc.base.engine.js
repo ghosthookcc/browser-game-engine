@@ -27,4 +27,9 @@ export { SHADERSOURCES, Shader } from "./gl/shader.js";
 
 export * as GUI from "./GUI/gui.js";
 
+export { math } from "./math/math.js";
+
+export { Scene } from "./scenes/base/scene.base.js";
+export { BasicScene } from "./scenes/BasicScene.scene.js";
+
 
