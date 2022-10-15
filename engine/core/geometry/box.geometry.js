@@ -16,6 +16,7 @@ export class Box extends Geometry
 
 		this.VBO_OBJ.Buffer(gl.ARRAY_BUFFER, true);
 		this.pos_attrib_loc = ShaderObj.getAttribLoc("in_position");
+		this.VAO_OBJ.AddAttrib("in_position", this.pos_attrib_loc);
 
 		this.VAO_OBJ.Buffer(true);
 		this.VAO_OBJ.BindBuffer();
@@ -65,7 +66,8 @@ export class Box extends Geometry
 
 		this.VBO_OBJ.Buffer(gl.ARRAY_BUFFER, true);
 		this.color_attrib_loc = ShaderObj.getAttribLoc("in_color");
-		
+		this.VAO_OBJ.AddAttrib("in_color", this.color_attrib_loc);
+
 		this.VAO_OBJ.VertexAttribPtr(this.color_attrib_loc, 3, gl.FLOAT, false, 0, 0);
 		this.VAO_OBJ.EnableVertexAttrib(this.color_attrib_loc);
 
@@ -99,7 +101,7 @@ export class Box extends Geometry
     		20, 21, 22,   20, 22, 23,   // Left face
 		];
 		this.VBO_OBJ.BufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(Geometry.prototype.indcs));  
-		
+
 		super.set_vertices(this.verts);
 		super.set_mesh();
 	}

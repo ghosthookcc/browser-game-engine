@@ -30,7 +30,6 @@ function animate()
     CUBE5.rotateX(rotation);
 
     const CUBESX = CUBE1.getPosition().x;
-    console.log(CUBESX);
     if (CUBESX < 2.0)
     {   
         CUBE1.translateX(rotation / 3);

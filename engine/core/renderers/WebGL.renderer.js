@@ -40,18 +40,15 @@ export class WebGLRenderer extends Renderer
 				game_obj.VAO_OBJ.get_vaos().forEach(vao => 
 				{
 					game_obj.VAO_OBJ.BindSpecificBuffer(vao);
-					game_obj.VAO_OBJ.EnableVertexAttrib(0);
-					game_obj.VAO_OBJ.EnableVertexAttrib(1);
 					game_obj.update();
 					game_obj.draw();
-					game_obj.VAO_OBJ.DisableVertexAttrib(0);
-					game_obj.VAO_OBJ.DisableVertexAttrib(1);
+					game_obj.VAO_OBJ.UnbindBuffer(vao);
 					vao_idx += 1;
 				});
 			});
 		}
 
-		let fps = Math.round(1.0 / this.DeltaTime);
+		const fps = Math.round(1.0 / this.DeltaTime);
     	GUI.set_fps(fps);
     	GUI.set_frame_time(1000.0 / fps);
 		await this._game_time.next_frame(this._game_loop);
