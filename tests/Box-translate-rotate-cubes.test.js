@@ -1,5 +1,7 @@
 import * as GHCC from "ghcc";
 
+const camera = new GHCC.PerspectiveCamera(GHCC.math.Vec3(0.0, 0.0, -4.0));
+
 const renderer = new GHCC.WebGLRenderer(animate);
 const scene = new GHCC.BasicScene();
 
@@ -15,7 +17,8 @@ scene.add(CUBE3);
 scene.add(CUBE4);
 scene.add(CUBE5);
 
-renderer.add(scene);
+renderer.addCamera(camera);
+renderer.addScene(scene);
 function animate()
 {
     const rotation = 1.0 * renderer.DeltaTime * 0.65;

@@ -1,5 +1,3 @@
-import { gl } from "../globals.js";
-
 import { Renderer } from "./base/renderer.base.js";
 
 import { Box } from "../geometry/box.geometry.js";
@@ -17,12 +15,17 @@ export class WebGLRenderer extends Renderer
 		this._renderer_time = new GameTime();
 		this._renderer_loop = callback; 
 		this._renderer_scenes = new Array();
+		this._renderer_cameras = new Array();
 		window.onload = () => callback();
 	}
 
-	add(renderer_scene)
+	addScene(renderer_scene)
 	{
 		this._renderer_scenes.push(renderer_scene);
+	}
+	addCamera(renderer_camera)
+	{
+		this._renderer_cameras.push(renderer_camera);
 	}
 
 	async render()
@@ -34,6 +37,10 @@ export class WebGLRenderer extends Renderer
 		if (state != engine_states.PAUSED)
     	{
 			super.PREP_CANVAS();
+			this._renderer_cameras.forEach(renderer_camera => 
+			{
+				renderer_camera.Update();
+			});
 			this._renderer_scenes.forEach(renderer_scene => 
 			{
 				renderer_scene.Render();

@@ -9,7 +9,7 @@ export const normal_vert_source = `#version 300 es
     uniform vec3 offset;
 
     void main() {
-      gl_Position = projViewMatrix * modelMatrix * (vec4(in_position + offset, 1.0));
+      gl_Position = projViewMatrix * modelMatrix * vec4(in_position + offset, 1.0);
       v_out_color = in_color;
     }
 `;

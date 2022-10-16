@@ -1,5 +1,3 @@
-import { gl } from "../../globals.js";
-
 import { BasicMesh } from "../mesh/basic.mesh.js";
 
 export class Geometry extends BasicMesh 
@@ -26,7 +24,7 @@ export class Geometry extends BasicMesh
 	{
 		super.set_geometry({ 
 								verts: new Float32Array(this.verts),
-						    	colors: new Float32Array(Geometry.prototype.colors),
+						    	colors: new Float32Array(this.colors),
 								indcs: new Uint16Array(Geometry.prototype.indcs) 
 						   });	
 	}

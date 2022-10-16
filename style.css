@@ -12,14 +12,19 @@ html, body
     padding: 0;
 }
 
-#entrypoint
+.container 
+{
+    height:  100vh;
+}
+
+.entrypoint
 {
     display: block;
     width: 100%;
     height: 100%;
 }
 
-#overlay 
+.overlay 
 {
     position: absolute;
 
@@ -34,12 +39,12 @@ html, body
     color: white; 
 }
 
-#overlay #FPS
+.overlay .FPS
 {
     color: lime;
 }
 
-#overlay #FRAME_TIME 
+.overlay .FRAME_TIME 
 {
     color: green;
 }

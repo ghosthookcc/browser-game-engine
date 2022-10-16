@@ -1,5 +1,3 @@
-import { gl } from "../../globals.js";
-
 export class GLBuffer 
 {
 	constructor()

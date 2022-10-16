@@ -1,4 +1,4 @@
-import { gl, PerspectiveObj, ShaderObj } from "../globals.js";
+import { gl, math, PerspectiveObj, ShaderObj } from "../globals.js";
 
 import { Geometry } from "./base/geometry.base.js";
 
