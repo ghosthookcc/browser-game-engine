@@ -10,6 +10,13 @@ export { VBO } from "./core/buffers/vertex.buffer.js";
 export { Camera } from "./core/cameras/base/camera.base.js";
 export { PerspectiveCamera } from "./core/cameras/perspective.camera.js";
 
+export { Component } from "./core/components/all_base/component.base.js";
+export { PerspectiveController } from "./core/components/controller_base/Perspective.controller.js";
+
+export { Entity } from "./core/entities/base/entity.base.js";
+export { BasicEntity } from "./core/entities/basic.entity.js";
+export { InvisibleEntity } from "./core/entities/invisible.entity.js";
+
 export { Geometry } from "./core/geometry/base/geometry.base.js";
 export { Box } from "./core/geometry/box.geometry.js";
 

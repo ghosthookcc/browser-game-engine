@@ -1,8 +1,11 @@
-export class Camera 
+import { InvisibleEntity } from "../../entities/invisible.entity.js";
+
+export class Camera extends InvisibleEntity
 {
 	constructor(start_pos)
 	{
-		this.rerender = true;
+		super();
+		this.update = true;
 		this.position = start_pos;	
 	}
 
@@ -11,13 +14,13 @@ export class Camera
 		return this.position;
 	}
 
-	_rerender(new_state)
+	_update(new_state)
 	{
-		this.rerender = new_state;
+		this.update = new_state;
 	}
 
-	_shouldRerender()
+	_shouldUpdate()
 	{
-		return this.rerender;
+		return this.update;
 	}
 }

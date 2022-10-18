@@ -15,7 +15,6 @@ export class WebGLRenderer extends Renderer
 		this._renderer_time = new GameTime();
 		this._renderer_loop = callback; 
 		this._renderer_scenes = new Array();
-		this._renderer_cameras = new Array();
 		window.onload = () => callback();
 	}
 
@@ -37,19 +36,12 @@ export class WebGLRenderer extends Renderer
 		if (state != engine_states.PAUSED)
     	{
 			super.PREP_CANVAS();
-			this._renderer_cameras.forEach(renderer_camera => 
-			{
-				renderer_camera.Update();
-			});
 			this._renderer_scenes.forEach(renderer_scene => 
 			{
 				renderer_scene.Render();
 			});
 		}
 
-		const fps = Math.round(1.0 / this.DeltaTime);
-    	GUI.set_fps(fps);
-    	GUI.set_frame_time(1000.0 / fps);
 		await this._renderer_time.next_frame(this._renderer_loop);
 	}
 }

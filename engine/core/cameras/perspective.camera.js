@@ -2,11 +2,10 @@ import { math, PerspectiveObj, ShaderObj } from "../globals.js";
 
 import { Camera } from "./base/camera.base.js";
 
+import { BasicEntity } from "../entities/basic.entity.js";
+
 export class PerspectiveCamera extends Camera 
 {
-	camera = math.Mat4x4(true);
-	projection = math.Mat4x4(true);
-	view = math.Mat4x4(true);
 	constructor(start_pos)
 	{
 		super(start_pos);
@@ -14,9 +13,8 @@ export class PerspectiveCamera extends Camera
 
 	Update()
 	{
-		if (super._shouldRerender())
+		if (super._shouldUpdate())
 		{
-			PerspectiveObj.setProj();
 			let position = super.getPosition();
 
 			const new_cameraMat = math.Mat4x4(false);
@@ -35,7 +33,7 @@ export class PerspectiveCamera extends Camera
 
 	   	    ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("projViewMatrix"), false, 
            	        	          	   PerspectiveObj.getProjViewMat());
-			super._rerender(false);
+			super._update(false);
 		}
 	}
 }

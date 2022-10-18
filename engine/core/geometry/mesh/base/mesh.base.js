@@ -11,10 +11,11 @@ export class Mesh
 	
 		this.new_translation = false;
 		this.new_rotation = false;
+		this.rerender = true;
 
-		this._position = math.Vec3(0.0, 0.0, 0.0);
+		this._real_position = math.Vec3(0.0, 0.0, 0.0);
 	}
-
+	
 	translate()
 	{
 		mat4.translate(this.modViewMat,
@@ -27,7 +28,7 @@ export class Mesh
 	translateX(new_x)
 	{
 		this.position.x = new_x;
-		this._position.x += new_x;
+		this._real_position.x += new_x;
 		this.new_translation = true;
 		return this.position.x;
 	}
@@ -35,7 +36,7 @@ export class Mesh
 	translateY(new_y)
 	{
 		this.position.y = new_y;
-		this._position.y += this.position.y;
+		this._real_position.y += this.position.y;
 		this.new_translation = true;
 		return this.position.y;
 	}
@@ -43,7 +44,7 @@ export class Mesh
 	translateZ(new_z)
 	{
 		this.position.z = new_z;
-		this._position.z += this.position.z;
+		this._real_position.z += this.position.z;
 		this.new_translation = true;
 		return this.position.z;
 	}
@@ -54,12 +55,10 @@ export class Mesh
         		    this.modViewMat,     
              		this.rotation.x,
                 	[1, 0, 0]);
-		
 		mat4.rotate(this.modViewMat,    
         		    this.modViewMat,     
              		this.rotation.y,
                 	[0, 1, 0]);
-
 		mat4.rotate(this.modViewMat,    
          		    this.modViewMat,    
              		this.rotation.z,
@@ -72,35 +71,31 @@ export class Mesh
 		this.new_rotation = true;
 		return this.rotation.x;
 	}
-
 	rotateY(new_deg)
 	{
 		this.rotation.y = new_deg;
 		this.new_rotation = true;
 		return this.rotation.y;
 	}
-
 	rotateZ(new_deg)
 	{
 		this.rotation.z = new_deg;
 		this.new_rotation = true;
 		return this.rotation.z;
 	}
-
+	
 	incRotateX(deg)
 	{
 		this.rotation.x += deg;
 		this.new_rotation = true;
 		return this.rotation.x;
 	}
-
 	incRotateY(deg)
 	{
 		this.rotation.y += deg;
 		this.new_rotation = true;
 		return this.rotation.y;
 	}
-
 	incRotateZ(deg)
 	{
 		this.rotation.z += deg;
@@ -112,7 +107,6 @@ export class Mesh
 	{
 		return this.new_translation;
 	}
-
 	set_translation_status(bool)
 	{
 		this.new_translation = bool;
@@ -122,7 +116,6 @@ export class Mesh
 	{
 		return this.new_rotation;
 	}
-
 	set_rotation_status(bool)
 	{
 		this.new_rotation = bool;
@@ -130,11 +123,17 @@ export class Mesh
 
 	getPosition()
 	{
-		return this._position;
+		return this._real_position;
 	}
 
 	getModViewMat()
 	{
 		return this.modViewMat;
+	}
+
+	// merge current mesh with another mesh into a combined mesh
+	merge(other)
+	{
+
 	}
 }

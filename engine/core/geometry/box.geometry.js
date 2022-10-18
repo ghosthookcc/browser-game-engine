@@ -118,8 +118,9 @@ export class Box extends Geometry
 			super.rotate();
 			super.set_rotation_status(false); 
 		}
-	    ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("modelMatrix"), false, 
-           	        	           super.getModViewMat());
+		
+		ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("modelMatrix"), false, 
+          	    	    	       super.getModViewMat());
 	}
 
 	draw()

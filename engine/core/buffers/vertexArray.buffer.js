@@ -35,10 +35,6 @@ export class VAO extends GLBuffer
 		if (super.get_vaos().includes(buffer))
 		{
 			gl.bindVertexArray(buffer);
-			for (let idx = 0; idx < Object.keys(this.attribs).length; idx++) 
-			{
-				this.EnableVertexAttrib(this.attribs[idx]);
-			}
 			DidBind = true;
 		}
 		return DidBind;
@@ -46,10 +42,12 @@ export class VAO extends GLBuffer
 
 	UnbindBuffer()
 	{
+		/*
 		for (let idx = 0; idx < Object.keys(this.attribs).length; idx++)
 		{
 			this.DisableVertexAttrib(this.attribs[idx]);
 		}
+		*/
 	}
 
 	VertexAttribPtr(attrib_idx, size_per_pair, type, normalized, stride, data_start_ptr)
