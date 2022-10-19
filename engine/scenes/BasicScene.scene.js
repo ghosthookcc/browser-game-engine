@@ -29,7 +29,7 @@ export class BasicScene extends Scene
 			});
 			scene_cameras.forEach(scene_camera => 
 			{
-				scene_camera.Update();
+				scene_camera.update();
 			});
 		}
 	}

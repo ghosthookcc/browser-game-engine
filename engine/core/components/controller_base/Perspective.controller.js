@@ -1,11 +1,78 @@
+import { math, PerspectiveObj } from "../../globals.js";
+
 import { Component } from "../all_base/component.base.js";
 
-export class PerspectiveController extends Component
+export class PerspectiveController
 {
 	constructor(entity)
 	{
-		super();
-		this.event_name = "MovePerspective";
-		return this;
+		this.isFrameComponent = false;
+
+		this.component_name = "PerspectiveController";
+		this.callback_func = this.move;
+
+		this.entity = entity;
+		if (this.entity.isBasicEntity) this.entity.position = this.entity.mesh.position;
+
+		document.addEventListener("keydown", (event) =>
+		{
+			this.callback_func(event.key);	
+		});
+	}
+
+	move(key_pressed)
+	{
+		switch (key_pressed)
+		{
+			case "w":
+				this.MoveForwardZ();
+				break;
+			case "a":
+				this.MoveLeftX();
+				break;
+			case "s":
+				this.MoveBackwardsZ();
+				break;
+			case "d":
+				this.MoveRightX();
+				break;
+			default:
+				break;
+		}
+	}
+	
+	MoveForwardZ()
+	{
+		this.entity.position.z += 0.5;
+		this.entity.set_translation_status(true);
+	}
+	MoveBackwardsZ()
+	{
+		this.entity.position.z -= 0.5;
+		this.entity.set_translation_status(true);
+	}
+
+	MoveLeftX()
+	{
+		this.entity.position.x = this.entity.position.add(math.Vec3(0.0, 0.0, -1.0)
+														 .cross(math.Vec3(0.0, 1.0, 0.0))
+														 .normalize()).x;
+		this.entity.set_translation_status(true);
+	}
+	MoveRightX()
+	{
+		this.entity.position.x = this.entity.position.subtract(math.Vec3(0.0, 0.0, -1.0)
+															  .cross(math.Vec3(0.0, 1.0, 0.0))
+															  .normalize()).x;
+		this.entity.set_translation_status(true);
+	}
+
+	MoveUpY()
+	{
+		this.entity.set_translation_status(true);
+	}
+	MoveDownY()
+	{
+		this.entity.set_translation_status(true);
 	}
 }

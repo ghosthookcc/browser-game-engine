@@ -8,22 +8,39 @@ export class VAO extends GLBuffer
 	{
 		super();
 		this.attribs = {};
+
+		this.vao_buffers = new Array();
+		this.curr_vao = -1;
+	}
+
+	get_vaos()
+	{
+		return this.vao_buffers;
+	}
+
+	get_curr_vao()
+	{
+		return this.curr_vao;
+	}
+	set_curr_vao(buffer)
+	{
+		this.curr_vao = buffer;
 	}
 
 	Buffer(buffer_type, bind_new)
 	{
-		super.set_curr_vao(gl.createVertexArray());
-		let vaos = super.get_vaos();
-		vaos.push(super.get_curr_vao());
+		this.set_curr_vao(gl.createVertexArray());
+		let vaos = this.get_vaos();
+		vaos.push(this.get_curr_vao());
 		if (bind_new) this.BindBuffer(buffer_type);
 	}
 
 	BindBuffer()
 	{
 		let DidBind = false;
-		if (super.get_curr_vao() != -1)
+		if (this.get_curr_vao() != -1)
 		{
-			gl.bindVertexArray(super.get_curr_vao());
+			gl.bindVertexArray(this.get_curr_vao());
 			DidBind = true;
 		}
 		return DidBind;
@@ -32,7 +49,7 @@ export class VAO extends GLBuffer
 	BindSpecificBuffer(buffer)
 	{
 		let DidBind = false;
-		if (super.get_vaos().includes(buffer))
+		if (this.get_vaos().includes(buffer))
 		{
 			gl.bindVertexArray(buffer);
 			DidBind = true;

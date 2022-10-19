@@ -1,5 +1,8 @@
 import { math, PerspectiveObj, ShaderObj } from "../../../globals.js";
 
+import { VAO } from "../../../buffers/vertexArray.buffer.js";
+import { VBO } from "../../../buffers/vertex.buffer.js";
+
 export class Mesh 
 {
 	constructor()
@@ -15,6 +18,11 @@ export class Mesh
 
 		this._real_position = math.Vec3(0.0, 0.0, 0.0);
 		this._real_rotation = math.Vec3(0.0, 0.0, 0.0);
+
+		this.VBO_OBJ = new VBO();
+		this.VAO_OBJ = new VAO();
+
+		Mesh.prototype.isMesh = true;
 	}
 	
 	/*  Implement proper game engine units for use in distance */
@@ -25,6 +33,14 @@ export class Mesh
               		   [this.position.x, 
                			this.position.y, 
                		    this.position.z]);
+	}
+
+	translateTo(new_pos)
+	{
+		this.position = new_pos;
+		this._real_position = new_pos;
+		this.new_translation = true;
+		return this.position;
 	}
 
 	translateX(new_x)
@@ -141,7 +157,7 @@ export class Mesh
 
 	getPosition()
 	{
-		return this._real_position;
+		return this.position;
 	}
 	getRotation()
 	{

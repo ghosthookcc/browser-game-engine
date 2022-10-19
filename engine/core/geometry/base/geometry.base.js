@@ -1,10 +1,9 @@
 import { BasicMesh } from "../mesh/basic.mesh.js";
 
-export class Geometry extends BasicMesh 
+export class Geometry
 {
 	constructor()
 	{
-		super();
 		this.verts = null;
 		this.colors = null;
 		Geometry.prototype.indcs = null;
@@ -18,14 +17,5 @@ export class Geometry extends BasicMesh
 	set_colors(colors)
 	{
 		this.colors = colors;
-	}
-
-	set_mesh()
-	{
-		super.set_geometry({ 
-								verts: new Float32Array(this.verts),
-						    	colors: new Float32Array(this.colors),
-								indcs: new Uint16Array(Geometry.prototype.indcs) 
-						   });	
 	}
 }

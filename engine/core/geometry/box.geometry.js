@@ -2,29 +2,27 @@ import { gl, math, PerspectiveObj, ShaderObj } from "../globals.js";
 
 import { Geometry } from "./base/geometry.base.js";
 
-import { VAO } from "../buffers/vertexArray.buffer.js";
-import { VBO } from "../buffers/vertex.buffer.js";
+import { BasicMesh } from "./mesh/basic.mesh.js";
 
 export class Box extends Geometry
 {
 	constructor(sizeX, sizeY, sizeZ)
 	{
 		super();
-
-		this.VBO_OBJ = new VBO();
-		this.VAO_OBJ = new VAO();
-
-		this.VBO_OBJ.Buffer(gl.ARRAY_BUFFER, true);
-		this.pos_attrib_loc = ShaderObj.getAttribLoc("in_position");
-		this.VAO_OBJ.AddAttrib("in_position", this.pos_attrib_loc);
-
-		this.VAO_OBJ.Buffer(true);
-		this.VAO_OBJ.BindBuffer();
 		
-		this.VAO_OBJ.VertexAttribPtr(this.pos_attrib_loc, 3, gl.FLOAT, false, 0, 0);
-		this.VAO_OBJ.EnableVertexAttrib(this.pos_attrib_loc);
+		let mesh = new BasicMesh(); 
+
+		mesh.VBO_OBJ.Buffer(gl.ARRAY_BUFFER, true);
+		const pos_attrib_loc = ShaderObj.getAttribLoc("in_position");
+		mesh.VAO_OBJ.AddAttrib("in_position", pos_attrib_loc);
+
+		mesh.VAO_OBJ.Buffer(true);
+		mesh.VAO_OBJ.BindBuffer();
 		
-		this.verts = 
+		mesh.VAO_OBJ.VertexAttribPtr(pos_attrib_loc, 3, gl.FLOAT, false, 0, 0);
+		mesh.VAO_OBJ.EnableVertexAttrib(pos_attrib_loc);
+		
+		const verts = 
 		[
     		// Front face
     		-sizeX, -sizeY,  sizeZ,
@@ -62,14 +60,14 @@ export class Box extends Geometry
     		-sizeX,  sizeY,  sizeZ,
     		-sizeX,  sizeY, -sizeZ,
 		];
-		this.VBO_OBJ.BufferData(gl.ARRAY_BUFFER, new Float32Array(this.verts)); 
+		mesh.VBO_OBJ.BufferData(gl.ARRAY_BUFFER, new Float32Array(verts)); 
 
-		this.VBO_OBJ.Buffer(gl.ARRAY_BUFFER, true);
-		this.color_attrib_loc = ShaderObj.getAttribLoc("in_color");
-		this.VAO_OBJ.AddAttrib("in_color", this.color_attrib_loc);
+		mesh.VBO_OBJ.Buffer(gl.ARRAY_BUFFER, true);
+		const color_attrib_loc = ShaderObj.getAttribLoc("in_color");
+		mesh.VAO_OBJ.AddAttrib("in_color", color_attrib_loc);
 
-		this.VAO_OBJ.VertexAttribPtr(this.color_attrib_loc, 3, gl.FLOAT, false, 0, 0);
-		this.VAO_OBJ.EnableVertexAttrib(this.color_attrib_loc);
+		mesh.VAO_OBJ.VertexAttribPtr(color_attrib_loc, 3, gl.FLOAT, false, 0, 0);
+		mesh.VAO_OBJ.EnableVertexAttrib(color_attrib_loc);
 
 		const base_colors = 
 		[
@@ -81,16 +79,16 @@ export class Box extends Geometry
     		[1.0,  0.0,  1.0, 1.0],    // Left face: purple
 		];
 
-		this.colors = [];
-		var temp = [];
+		let colors = [];
+		let temp = [];
 		for (var j = 0; j < base_colors.length; j++) 
 		{
     		const c = base_colors[j];
- 			this.colors = this.colors.concat(c, c, c, c);
+ 			colors = colors.concat(c, c, c, c);
 		}
-		this.VBO_OBJ.BufferData(gl.ARRAY_BUFFER, new Float32Array(this.colors));   
+		mesh.VBO_OBJ.BufferData(gl.ARRAY_BUFFER, new Float32Array(colors));   
 
-		this.VBO_OBJ.Buffer(gl.ELEMENT_ARRAY_BUFFER, true);
+		mesh.VBO_OBJ.Buffer(gl.ELEMENT_ARRAY_BUFFER, true);
 		Geometry.prototype.indcs = 
 		[
     		0,  1,  2,    0,  2,  3,    // Front face
@@ -100,31 +98,9 @@ export class Box extends Geometry
     		16, 17, 18,   16, 18, 19,   // Right face
     		20, 21, 22,   20, 22, 23,   // Left face
 		];
-		this.VBO_OBJ.BufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(Geometry.prototype.indcs));  
+		mesh.VBO_OBJ.BufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(Geometry.prototype.indcs));  
 
-		super.set_vertices(this.verts);
-		super.set_mesh();
-	}
-
-	update()
-	{
-		if (super.get_translation_status()) 
-		{ 
-			super.translate();
-			super.set_translation_status(false); 
-		}
-		if (super.get_rotation_status()) 
-		{ 
-			super.rotate();
-			super.set_rotation_status(false); 
-		}
-		
-		ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("modelMatrix"), false, 
-          	    	    	       super.getModViewMat());
-	}
-
-	draw()
-	{
-		gl.drawElements(gl.TRIANGLES, 36, gl.UNSIGNED_SHORT, 0);
+		super.set_vertices(verts);
+		return mesh;
 	}
 }

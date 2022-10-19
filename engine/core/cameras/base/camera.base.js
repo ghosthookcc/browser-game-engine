@@ -1,26 +1,11 @@
 import { InvisibleEntity } from "../../entities/invisible.entity.js";
 
+import { BasicMesh } from "../../geometry/mesh/basic.mesh.js";
+
 export class Camera extends InvisibleEntity
 {
-	constructor(start_pos)
+	constructor(mesh, start_pos, start_rot)
 	{
-		super();
-		this.update = true;
-		this.position = start_pos;	
-	}
-
-	getPosition()
-	{
-		return this.position;
-	}
-
-	_update(new_state)
-	{
-		this.update = new_state;
-	}
-
-	_shouldUpdate()
-	{
-		return this.update;
+		super(mesh);
 	}
 }
