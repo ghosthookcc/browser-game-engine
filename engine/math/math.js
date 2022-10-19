@@ -14,13 +14,19 @@ import { QUATERNION } from "./types/base/quaternion.base.js";
 
 import { Quaternion } from "./types/quaternion.type.js";
 
-export class Math
+export class cMath
 {
 	constructor()
 	{
 		this.MATRIX     = new MATRIX();
 		this.VEC        = new VEC(); 
 		this.QUATERNION = new QUATERNION();
+	}
+
+	DegToRad(deg)
+	{
+		let radians = deg * Math.PI / 180.0;
+		return radians;
 	}
 
 	Mat4x4(identity)

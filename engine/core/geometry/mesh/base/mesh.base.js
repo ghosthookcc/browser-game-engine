@@ -14,8 +14,10 @@ export class Mesh
 		this.rerender = true;
 
 		this._real_position = math.Vec3(0.0, 0.0, 0.0);
+		this._real_rotation = math.Vec3(0.0, 0.0, 0.0);
 	}
 	
+	/*  Implement proper game engine units for use in distance */
 	translate()
 	{
 		mat4.translate(this.modViewMat,
@@ -32,7 +34,6 @@ export class Mesh
 		this.new_translation = true;
 		return this.position.x;
 	}
-
 	translateY(new_y)
 	{
 		this.position.y = new_y;
@@ -40,7 +41,6 @@ export class Mesh
 		this.new_translation = true;
 		return this.position.y;
 	}
-
 	translateZ(new_z)
 	{
 		this.position.z = new_z;
@@ -67,18 +67,27 @@ export class Mesh
 
 	rotateX(new_deg)
 	{
+		this._real_rotation.x += new_deg;
+
+		new_deg = math.DegToRad(new_deg);
 		this.rotation.x = new_deg;
 		this.new_rotation = true;
 		return this.rotation.x;
 	}
 	rotateY(new_deg)
 	{
+		this._real_rotation.y += new_deg;
+
+		new_deg = math.DegToRad(new_deg);
 		this.rotation.y = new_deg;
 		this.new_rotation = true;
 		return this.rotation.y;
 	}
 	rotateZ(new_deg)
 	{
+		this._real_rotation.z += new_deg;
+
+		new_deg = math.DegToRad(new_deg);
 		this.rotation.z = new_deg;
 		this.new_rotation = true;
 		return this.rotation.z;
@@ -86,18 +95,27 @@ export class Mesh
 	
 	incRotateX(deg)
 	{
+		this._real_rotation.x += deg;
+
+		deg = math.DegToRad(deg);
 		this.rotation.x += deg;
 		this.new_rotation = true;
 		return this.rotation.x;
 	}
 	incRotateY(deg)
 	{
+		this._real_rotation.y += deg;
+
+		deg = math.DegToRad(deg);
 		this.rotation.y += deg;
 		this.new_rotation = true;
 		return this.rotation.y;
 	}
 	incRotateZ(deg)
 	{
+		this._real_rotation.z += deg;
+
+		deg = math.DegToRad(deg);
 		this.rotation.z += deg;
 		this.new_rotation = true;
 		return this.rotation.z;
@@ -124,6 +142,10 @@ export class Mesh
 	getPosition()
 	{
 		return this._real_position;
+	}
+	getRotation()
+	{
+		return this._real_rotation;
 	}
 
 	getModViewMat()
