@@ -1,10 +1,9 @@
 import { VEC } from "./base/vec.base.js";
 
-export class Vec4 extends VEC
+export class Vec4
 {
 	constructor(x, y, z, w)
 	{
-		super();
 		this.x = x;
 		this.y = y;
 		this.z = z; 

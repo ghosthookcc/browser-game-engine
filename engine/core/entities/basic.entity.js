@@ -19,15 +19,15 @@ export class BasicEntity extends Entity
 
 	update()
 	{
-		if (this.mesh.get_translation_status()) 
+		if (this.mesh.position.translating) 
 		{ 
 			this.mesh.translate();
-			this.mesh.set_translation_status(false); 
+			this.mesh.position.translating = false; 
 		}
-		if (this.mesh.get_rotation_status()) 
-		{ 
+		if (this.mesh.rotation.rotating) 
+		{	 
 			this.mesh.rotate();
-			this.mesh.set_rotation_status(false); 
+			this.mesh.rotation.rotating = false; 
 		}
 		
 		ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("modelMatrix"), false, 

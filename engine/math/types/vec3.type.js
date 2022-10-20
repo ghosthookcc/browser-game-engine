@@ -17,11 +17,11 @@ export class Vec3 extends VEC
    			return new Vec3(this.x / len, this.y / len, this.z / len);
    		}
 
-   		this.cross = (vec3B) =>
+   		this.cross = (vec3B) => 
 		{
     		let new_vec3 = new Vec3(0.0, 0.0, 0.0);
 
-   		 	new_vec3.x = this.y * vec3B.z - this.z * vec3B.y;
+   			new_vec3.x = this.y * vec3B.z - this.z * vec3B.y;
     		new_vec3.y = this.z * vec3B.x - this.x * vec3B.z;
     		new_vec3.z = this.x * vec3B.y - this.y * vec3B.x;
 
@@ -37,7 +37,7 @@ export class Vec3 extends VEC
 			return new_vec3;
 		}
 
-		this.subtract = (vec3B) => 
+		this.subtract = (vec3B) =>  
 		{
 			let new_vec3 = new Vec3(this.x, this.y, this.z);
 			new_vec3.x -= vec3B.x;

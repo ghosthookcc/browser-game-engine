@@ -44,12 +44,12 @@ export class PerspectiveController
 	MoveForwardZ()
 	{
 		this.entity.position.z += 0.5;
-		this.entity.set_translation_status(true);
+		this.entity.position.translating = true;
 	}
 	MoveBackwardsZ()
 	{
 		this.entity.position.z -= 0.5;
-		this.entity.set_translation_status(true);
+		this.entity.position.translating = true;
 	}
 
 	MoveLeftX()
@@ -57,22 +57,22 @@ export class PerspectiveController
 		this.entity.position.x = this.entity.position.add(math.Vec3(0.0, 0.0, -1.0)
 														 .cross(math.Vec3(0.0, 1.0, 0.0))
 														 .normalize()).x;
-		this.entity.set_translation_status(true);
+		this.entity.position.translating = true;
 	}
 	MoveRightX()
 	{
 		this.entity.position.x = this.entity.position.subtract(math.Vec3(0.0, 0.0, -1.0)
 															  .cross(math.Vec3(0.0, 1.0, 0.0))
 															  .normalize()).x;
-		this.entity.set_translation_status(true);
+		this.entity.position.translating = true;
 	}
 
 	MoveUpY()
 	{
-		this.entity.set_translation_status(true);
+		this.entity.position.translating = true;
 	}
 	MoveDownY()
 	{
-		this.entity.set_translation_status(true);
+		this.entity.position.translating = true;
 	}
 }
