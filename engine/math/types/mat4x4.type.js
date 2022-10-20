@@ -4,6 +4,7 @@ export class Mat4x4 extends MATRIX
 {
 	constructor(identity)
 	{
+		super();
 		this.mat4x4 = [0, 0, 0, 0,
 		   			   0, 0, 0, 0,
 		   			   0, 0, 0, 0,

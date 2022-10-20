@@ -4,6 +4,7 @@ export class Quaternion extends QUATERNION
 {
 	constructor(x, y, z, w)
 	{
+		super();
 		this.x = x;
 		this.y = y;
 		this.z = z; 
