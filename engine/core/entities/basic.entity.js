@@ -22,12 +22,12 @@ export class BasicEntity extends Entity
 		if (this.mesh.position.translating) 
 		{ 
 			this.mesh.translate();
-			this.mesh.position.translating = false; 
+			this.position.translating = false; 
 		}
 		if (this.mesh.rotation.rotating) 
 		{	 
 			this.mesh.rotate();
-			this.mesh.rotation.rotating = false; 
+			this.rotation.rotating = false; 
 		}
 		
 		ShaderObj.setUniformMat4fv(ShaderObj.getUniformLoc("modelMatrix"), false, 

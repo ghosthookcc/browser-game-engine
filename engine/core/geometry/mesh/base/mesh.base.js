@@ -17,11 +17,14 @@ export class Mesh
 			_vec_pos: math.Vec3(0.0, 0.0, 0.0),
 
 			get vec() { return this._vec_pos; },
-			get x() { console.log(); return this._vec_pos.x; },
+			get x() { return this._vec_pos.x; },
 			get y() { return this._vec_pos.y; },
 			get z() { return this._vec_pos.z; },
 
-			set vec(new_vec) { this._vec_pos = new_vec; },
+			set vec(new_vec) { 
+							   this._vec_pos = new_vec; 
+							   this.translating = true; 
+							 },
 			set x(new_x) { 
 						   this._vec_pos.x = new_x; 
 						   this.translating = true; 
@@ -49,7 +52,7 @@ export class Mesh
 			get z() { return this._vec_rot.z; },
 
 			set vec(new_rot) { 
-								this._vec_rot.x = new_rot;
+								this._vec_rot = new_rot;
 								this.rotating = true;
 							 },
 			set x(new_x_deg) { 
