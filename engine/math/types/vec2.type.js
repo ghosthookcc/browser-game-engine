@@ -1,6 +1,6 @@
 import { VEC } from "./base/vec.base.js";
 
-export class Vec2
+export class Vec2 extends VEC
 {
 	constructor(x, y)
 	{

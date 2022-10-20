@@ -1,6 +1,6 @@
 import { MATRIX } from "./base/matrix.base.js";
 
-export class Mat2x2
+export class Mat2x2 extends MATRIX
 {
 	constructor(identity)
 	{

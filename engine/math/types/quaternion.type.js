@@ -1,6 +1,6 @@
 import { QUATERNION } from "./base/quaternion.base.js";
 
-export class Quaternion
+export class Quaternion extends QUATERNION
 {
 	constructor(x, y, z, w)
 	{
