@@ -46,6 +46,13 @@ export class Vec3 extends VEC
 			return new_vec3;
 		}
 
+		this.equals = (vec3B) => 
+		{
+			return ((this.x === vec3B.x) 
+				 && (this.y === vec3B.y) 
+				 && (this.z === vec3B.z));
+		}
+
 		return this;
 	}
 }

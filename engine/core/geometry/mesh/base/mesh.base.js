@@ -22,20 +22,20 @@ export class Mesh
 			get z() { return this._vec_pos.z; },
 
 			set vec(new_vec) { 
-							   this._vec_pos = new_vec; 
-							   this.translating = true; 
+							   	this._vec_pos = new_vec; 
+							   	this.translating = true; 
 							 },
 			set x(new_x) { 
-						   this._vec_pos.x = new_x; 
-						   this.translating = true; 
+						    this._vec_pos.x = new_x; 
+						   	this.translating = true; 
 						 },
 			set y(new_y) { 
-						   this._vec_pos.y = new_y; 
-				           this.translating = true;
+						   	this._vec_pos.y = new_y; 
+				           	this.translating = true;
 				         },
 			set z(new_z) { 
-				 		   this._vec_pos.z = new_z; 
-				           this.translating = true;
+				 		   	this._vec_pos.z = new_z; 
+				           	this.translating = true;
 				         }
 		}
 		this.rotation = 
@@ -46,12 +46,13 @@ export class Mesh
 
 			_vec_rot: math.Vec3(0.0, 0.0, 0.0), 
 
-			get vec() { return this._vec_real_rot; },
+			get vec() { return this._vec_rot; },
 			get x() { return this._vec_rot.x; },
 			get y() { return this._vec_rot.y; },
 			get z() { return this._vec_rot.z; },
 
 			set vec(new_rot) { 
+								console.log(this._vec_rot);
 								this._vec_rot = new_rot;
 								this.rotating = true;
 							 },
@@ -87,9 +88,18 @@ export class Mesh
 
 	rotate()
 	{
-		math.MATRIX.rotateX_to(this.modViewMat, this.rotation.x);
-		math.MATRIX.rotateY_to(this.modViewMat, this.rotation.y);
-		math.MATRIX.rotateZ_to(this.modViewMat, this.rotation.z);
+		//math.MATRIX.rotateX_to(this.modViewMat, this.rotation.x);
+		//math.MATRIX.rotateY_to(this.modViewMat, this.rotation.y);
+		//math.MATRIX.rotateZ_to(this.modViewMat, this.rotation.z);
+		mat4.rotateX(this.modViewMat,
+					 this.modViewMat,
+					 this.rotation.x);
+		mat4.rotateY(this.modViewMat,
+					 this.modViewMat,
+					 this.rotation.y);
+		mat4.rotateZ(this.modViewMat,
+				     this.modViewMat,
+				     this.rotation.z);
 	}
 
 	getModViewMat()
