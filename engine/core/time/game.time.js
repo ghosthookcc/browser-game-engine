@@ -24,9 +24,9 @@ export class GameTime extends Time
         	const DeltaCurrFrame = FullFrameTime - this._DeltaTime;
         	setTimeout(function()
         	{
-            	render();
+				render();            	
         	}, DeltaCurrFrame);
-    	} else { render(); }
+    	} 
 
 		this.DeltaTime();
     	let frame_time = FullFrameTime - this._DeltaTime;

@@ -20,4 +20,4 @@ function animate()
     CUBE1.rotation.z = -(rotation / 3);
     CUBE2.rotation.z = rotation / 3;
     renderer.render();
-}
+}   

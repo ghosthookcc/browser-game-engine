@@ -1,11 +1,11 @@
-import { InvisibleEntity } from "../../entities/invisible.entity.js";
+import { BasicEntity } from "../../entities/basic.entity.js";
 
 import { BasicMesh } from "../../geometry/mesh/basic.mesh.js";
 
-export class Camera extends InvisibleEntity
+export class Camera extends BasicEntity
 {
-	constructor(mesh, start_pos, start_rot)
+	constructor()
 	{
-		super(mesh);
+		super();
 	}
 }

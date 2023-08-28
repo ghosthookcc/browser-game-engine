@@ -52,7 +52,6 @@ export class Mesh
 			get z() { return this._vec_rot.z; },
 
 			set vec(new_rot) { 
-								console.log(this._vec_rot);
 								this._vec_rot = new_rot;
 								this.rotating = true;
 							 },
@@ -78,7 +77,10 @@ export class Mesh
 		Mesh.prototype.isMesh = true;
 	}
 	
-	/*  Implement proper game engine units for use in distance */
+	/*  
+	    Implement proper game engine units 
+	    for use in distance 
+	*/
 	translate()
 	{
 		this.modViewMat[12] = this.position.x;
@@ -86,11 +88,12 @@ export class Mesh
 		this.modViewMat[14] = this.position.z;
 	}
 
+	/*
+		Implement own rotation functions
+		for x, y and z
+	*/
 	rotate()
 	{
-		//math.MATRIX.rotateX_to(this.modViewMat, this.rotation.x);
-		//math.MATRIX.rotateY_to(this.modViewMat, this.rotation.y);
-		//math.MATRIX.rotateZ_to(this.modViewMat, this.rotation.z);
 		mat4.rotateX(this.modViewMat,
 					 this.modViewMat,
 					 this.rotation.x);

@@ -12,7 +12,6 @@ export class PerspectiveController
 		this.callback_func = this.move;
 
 		this.entity = entity;
-		if (this.entity.isBasicEntity) this.entity.position = this.entity.mesh.position;
 
 		document.addEventListener("keydown", (event) =>
 		{
@@ -36,6 +35,30 @@ export class PerspectiveController
 			case "d":
 				this.MoveRightX();
 				break;
+			case "q":
+				this.MoveUpY();
+				break;
+			case "e":
+				this.MoveDownY();
+				break;
+			case "ArrowUp":
+				this.RotateUpX();
+				break;
+			case "ArrowLeft":
+				this.RotateLeftY();
+				break;
+			case "ArrowRight":
+				this.RotateRightY();
+				break;
+			case "ArrowDown":
+				this.RotateDownY();
+				break;
+			case ",":
+				this.RotateLeftZ();
+				break;
+			case ".":
+				this.RotateRightZ();
+				break;
 			default:
 				break;
 		}
@@ -43,36 +66,55 @@ export class PerspectiveController
 	
 	MoveForwardZ()
 	{
-		this.entity.position.z += 0.5;
-		this.entity.position.translating = true;
+		this.entity.position.z += 0.2;
 	}
 	MoveBackwardsZ()
 	{
-		this.entity.position.z -= 0.5;
-		this.entity.position.translating = true;
+		this.entity.position.z -= 0.2;
 	}
-
 	MoveLeftX()
 	{
-		this.entity.position.x = this.entity.position.add(math.Vec3(0.0, 0.0, -1.0)
+		this.entity.position.x = this.entity.position.vec.add(math.Vec3(0.0, 0.0, -1.0)
 														 .cross(math.Vec3(0.0, 1.0, 0.0))
 														 .normalize()).x;
-		this.entity.position.translating = true;
 	}
 	MoveRightX()
 	{
-		this.entity.position.x = this.entity.position.subtract(math.Vec3(0.0, 0.0, -1.0)
-															  .cross(math.Vec3(0.0, 1.0, 0.0))
-															  .normalize()).x;
-		this.entity.position.translating = true;
+		this.entity.position.x = this.entity.position.vec.subtract(math.Vec3(0.0, 0.0, -1.0)
+													     .cross(math.Vec3(0.0, 1.0, 0.0))
+													     .normalize()).x;
 	}
-
 	MoveUpY()
 	{
-		this.entity.position.translating = true;
+		this.entity.position.y -= 0.2;
 	}
 	MoveDownY()
 	{
-		this.entity.position.translating = true;
+		this.entity.position.y += 0.2;
+	}
+
+	RotateUpX()
+	{
+		this.entity.rotation.x += math.DegToRad(1.0);
+	}
+	RotateLeftY()
+	{
+		this.entity.rotation.y += math.DegToRad(1.0);
+	}
+	RotateRightY()
+	{
+		this.entity.rotation.y -= math.DegToRad(1.0);
+	}
+	RotateDownY()
+	{
+		this.entity.rotation.x -= math.DegToRad(1.0);
+	}
+	RotateLeftZ()
+	{
+		this.entity.rotation.z += math.DegToRad(1.0);
+	}
+	RotateRightZ()
+	{
+		this.entity.rotation.z -= math.DegToRad(1.0);
 	}
 }

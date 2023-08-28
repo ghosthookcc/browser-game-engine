@@ -4,6 +4,6 @@ export class CustomComponent extends Component
 {	
 	constructor()
 	{
-		super("a");
+		super("");
 	}
 }	
